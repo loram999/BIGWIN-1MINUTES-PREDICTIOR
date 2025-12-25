@@ -66,6 +66,127 @@
             pointer-events: none;
         }
 
+        /* Key Page */
+        .key-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--darker);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+
+        .key-page.hidden {
+            display: none;
+        }
+
+        .key-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .key-header {
+            margin-bottom: 30px;
+        }
+
+        .key-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .key-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .key-input-container {
+            margin-bottom: 25px;
+        }
+
+        .key-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        .key-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .key-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .key-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .key-error {
+            color: var(--danger);
+            margin-top: 10px;
+            font-size: 0.9rem;
+            min-height: 20px;
+        }
+
+        .key-hint {
+            margin-top: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 10px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: var(--radius);
+        }
+
+        /* Main App - Initially Hidden */
+        .main-app {
+            display: none;
+            width: 100%;
+        }
+
+        .main-app.active {
+            display: block;
+        }
+
         .container {
             max-width: 100%;
             width: 100%;
@@ -597,6 +718,14 @@
 
         /* Mobile Optimization */
         @media (max-width: 480px) {
+            .key-container {
+                padding: 25px;
+            }
+            
+            .key-header h1 {
+                font-size: 2rem;
+            }
+            
             .container {
                 padding: 12px;
             }
@@ -648,136 +777,169 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1><i class="fas fa-brain"></i> BIGWIN 1MINUTES PREDICTIOR</h1>
-            <p>USE AT YOUR OWN RISKS • JENIUS CREATOR TEAM</p>
-        </header>
-
-        <!-- Timer Section -->
-        <div class="timer-section">
-            <div class="card timer-card">
-                <div class="timer-label">Current Period</div>
-                <div class="timer-value" id="currentPeriod">--</div>
-                <div class="progress-container">
-                    <div class="progress-bar" id="periodProgress" style="width: 100%"></div>
-                </div>
+    <!-- Key Page -->
+    <div class="key-page" id="keyPage">
+        <div class="key-container">
+            <div class="key-header">
+                <h1><i class="fas fa-lock"></i> Access Required</h1>
+                <p>Enter access key to use the AI Predictor</p>
             </div>
-            <div class="card timer-card">
-                <div class="timer-label">Next Update In</div>
-                <div class="timer-value" id="countdownTimer">00:00</div>
-                <div class="progress-container">
-                    <div class="progress-bar" id="countdownProgress" style="width: 100%"></div>
-                </div>
+            
+            <div class="key-input-container">
+                <input type="text" 
+                       id="keyInput" 
+                       class="key-input" 
+                       placeholder="Enter access key..." 
+                       autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="none"
+                       spellcheck="false">
+                <div class="key-error" id="keyError"></div>
+            </div>
+            
+            <button class="key-btn" onclick="checkKey()">
+                <i class="fas fa-unlock-alt"></i> Access System
+            </button>
+            
+            <div class="key-hint">
+                <i class="fas fa-info-circle"></i> Producer: <strong>XENNIX</strong>JENIUS CREATOR TEAM
             </div>
         </div>
+    </div>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Left Column -->
-            <div class="left-column">
-                <!-- Prediction Display -->
-                <div class="card prediction-display">
-                    <div class="prediction-label">AI PREDICTION FOR NEXT ROUND</div>
-                    <div class="prediction-main" id="aiPrediction">--</div>
-                    <div class="prediction-details" id="predictionDetails">
-                        <span class="loading-spinner"></span> Loading prediction...
+    <!-- Main App -->
+    <div class="main-app" id="mainApp">
+        <div class="container">
+            <!-- Header -->
+            <header class="header">
+                <h1><i class="fas fa-brain"></i> BIGWIN 1MINUTES PREDICTIOR</h1>
+                <p>FREE TO USE • USE AT YOUR OWN RISKS</p>
+            </header>
+
+            <!-- Timer Section -->
+            <div class="timer-section">
+                <div class="card timer-card">
+                    <div class="timer-label">Current Period</div>
+                    <div class="timer-value" id="currentPeriod">--</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="periodProgress" style="width: 100%"></div>
                     </div>
                 </div>
-
-                <!-- Status Bar -->
-                <div class="card status-bar">
-                    <div class="status-info">
-                        <div class="status-indicator loading" id="statusIndicator"></div>
-                        <div class="status-text" id="statusText">Initializing system...</div>
-                    </div>
-                    <button class="btn" onclick="refreshData()">
-                        <i class="fas fa-sync-alt"></i> Refresh
-                    </button>
-                </div>
-
-                <!-- Stats Grid -->
-                <div class="stats-grid">
-                    <div class="card stat-card">
-                        <div class="stat-value" id="winCount">0</div>
-                        <div class="stat-label">WINS</div>
-                    </div>
-                    <div class="card stat-card">
-                        <div class="stat-value" id="loseCount">0</div>
-                        <div class="stat-label">LOSSES</div>
-                    </div>
-                    <div class="card stat-card">
-                        <div class="stat-value" id="winRate">0%</div>
-                        <div class="stat-label">WIN RATE</div>
-                    </div>
-                    <div class="card stat-card">
-                        <div class="stat-value" id="currentStreak">0</div>
-                        <div class="stat-label">STREAK</div>
+                <div class="card timer-card">
+                    <div class="timer-label">Next Update In</div>
+                    <div class="timer-value" id="countdownTimer">00:00</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="countdownProgress" style="width: 100%"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column -->
-            <div class="right-column">
-                <!-- Tabs Section -->
-                <div class="tabs-container">
-                    <div class="tabs-header">
-                        <button class="tab-btn active" data-tab="liveResults">
-                            <i class="fas fa-broadcast-tower"></i>
-                            Game Results
-                        </button>
-                        <button class="tab-btn" data-tab="predictions">
-                            <i class="fas fa-robot"></i>
-                            Predictions
-                        </button>
-                    </div>
-
-                    <!-- Live Results Tab -->
-                    <div id="liveResultsTab" class="tab-content active">
-                        <div class="table-wrapper">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 35%">Period</th>
-                                        <th style="width: 25%">Number</th>
-                                        <th style="width: 20%">Result</th>
-                                        <th style="width: 20%">Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="liveResultsBody">
-                                    <tr>
-                                        <td colspan="4" class="empty-state">
-                                            <i class="fas fa-spinner fa-spin"></i>
-                                            <div>Loading live results...</div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Left Column -->
+                <div class="left-column">
+                    <!-- Prediction Display -->
+                    <div class="card prediction-display">
+                        <div class="prediction-label">AI PREDICTION FOR NEXT ROUND</div>
+                        <div class="prediction-main" id="aiPrediction">--</div>
+                        <div class="prediction-details" id="predictionDetails">
+                            <span class="loading-spinner"></span> Loading prediction...
                         </div>
                     </div>
 
-                    <!-- Predictions Tab -->
-                    <div id="predictionsTab" class="tab-content">
-                        <div class="table-wrapper">
-                            <table class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 40%">Period</th>
-                                        <th style="width: 20%">Prediction</th>
-                                        <th style="width: 20%">Actual</th>
-                                        <th style="width: 20%">Result</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="predictionsBody">
-                                    <tr>
-                                        <td colspan="4" class="empty-state">
-                                            <i class="fas fa-history"></i>
-                                            <div>No predictions yet</div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <!-- Status Bar -->
+                    <div class="card status-bar">
+                        <div class="status-info">
+                            <div class="status-indicator loading" id="statusIndicator"></div>
+                            <div class="status-text" id="statusText">Initializing system...</div>
+                        </div>
+                        <button class="btn" onclick="refreshData()">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="card stat-card">
+                            <div class="stat-value" id="winCount">0</div>
+                            <div class="stat-label">WINS</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-value" id="loseCount">0</div>
+                            <div class="stat-label">LOSSES</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-value" id="winRate">0%</div>
+                            <div class="stat-label">WIN RATE</div>
+                        </div>
+                        <div class="card stat-card">
+                            <div class="stat-value" id="currentStreak">0</div>
+                            <div class="stat-label">STREAK</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="right-column">
+                    <!-- Tabs Section -->
+                    <div class="tabs-container">
+                        <div class="tabs-header">
+                            <button class="tab-btn active" data-tab="liveResults">
+                                <i class="fas fa-broadcast-tower"></i>
+                                Game Results
+                            </button>
+                            <button class="tab-btn" data-tab="predictions">
+                                <i class="fas fa-robot"></i>
+                                Predictions
+                            </button>
+                        </div>
+
+                        <!-- Live Results Tab -->
+                        <div id="liveResultsTab" class="tab-content active">
+                            <div class="table-wrapper">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 35%">Period</th>
+                                            <th style="width: 25%">Number</th>
+                                            <th style="width: 20%">Result</th>
+                                            <th style="width: 20%">Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="liveResultsBody">
+                                        <tr>
+                                            <td colspan="4" class="empty-state">
+                                                <i class="fas fa-spinner fa-spin"></i>
+                                                <div>Loading live results...</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Predictions Tab -->
+                        <div id="predictionsTab" class="tab-content">
+                            <div class="table-wrapper">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 40%">Period</th>
+                                            <th style="width: 20%">Prediction</th>
+                                            <th style="width: 20%">Actual</th>
+                                            <th style="width: 20%">Result</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="predictionsBody">
+                                        <tr>
+                                            <td colspan="4" class="empty-state">
+                                                <i class="fas fa-history"></i>
+                                                <div>No predictions yet</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -787,7 +949,90 @@
 
     <script>
         // ============================
-        // CONFIGURATION
+        // KEY AUTHENTICATION
+        // ============================
+        const CORRECT_KEY = "jclottery";
+        const keyPage = document.getElementById('keyPage');
+        const mainApp = document.getElementById('mainApp');
+        const keyInput = document.getElementById('keyInput');
+        const keyError = document.getElementById('keyError');
+
+        // Check if already authenticated
+        function checkSavedKey() {
+            const savedKey = localStorage.getItem('lottery_key');
+            if (savedKey === CORRECT_KEY) {
+                showMainApp();
+            }
+        }
+
+        // Check entered key
+        function checkKey() {
+            const enteredKey = keyInput.value.trim().toLowerCase();
+            
+            if (!enteredKey) {
+                showError("Please enter access key");
+                return;
+            }
+            
+            if (enteredKey === CORRECT_KEY) {
+                // Save to localStorage
+                localStorage.setItem('lottery_key', enteredKey);
+                showMainApp();
+            } else {
+                showError("Invalid access key");
+                keyInput.value = '';
+                keyInput.focus();
+                shakeInput();
+            }
+        }
+
+        // Show error message
+        function showError(message) {
+            keyError.textContent = message;
+            keyError.style.color = 'var(--danger)';
+        }
+
+        // Shake animation for wrong key
+        function shakeInput() {
+            keyInput.style.animation = 'none';
+            setTimeout(() => {
+                keyInput.style.animation = 'shake 0.5s';
+            }, 10);
+        }
+
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Show main app
+        function showMainApp() {
+            keyPage.classList.add('hidden');
+            mainApp.classList.add('active');
+            initApp();
+        }
+
+        // Handle Enter key
+        keyInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkKey();
+            }
+        });
+
+        // Auto-focus on input
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSavedKey();
+            keyInput.focus();
+        });
+
+        // ============================
+        // MAIN APPLICATION
         // ============================
         const API_CONFIG = {
             url: 'https://api.bigwinqaz.com/api/webapi/GetNoaverageEmerdList',
@@ -1096,7 +1341,7 @@
             
             const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             elements.predictionDetails.innerHTML = `
-                <i class="fas fa-brain"></i> Confidence: ${confidence}% Last Update ${timeStr}<br>
+                <i class="fas fa-brain"></i> Confidence: ${confidence}% • Updated: ${timeStr}<br>
                 <small style="font-size: 0.8rem;">Based on ${recentNumbers.length} recent results</small>
             `;
             
@@ -1202,9 +1447,9 @@
         }
 
         // ============================
-        // INITIALIZATION
+        // INITIALIZE MAIN APP
         // ============================
-        async function init() {
+        function initApp() {
             console.log('ð Initializing Lottery AI Predictor...');
             
             // Initialize UI
@@ -1212,12 +1457,14 @@
             startTimer();
             
             // Initial API call
-            await fetchAPIData();
+            fetchAPIData();
             
             // Make initial prediction if we have data
-            if (state.gameHistory.length > 0) {
-                makePrediction();
-            }
+            setTimeout(() => {
+                if (state.gameHistory.length > 0) {
+                    makePrediction();
+                }
+            }, 1500);
             
             console.log('â System initialized');
             
@@ -1632,11 +1879,6 @@
                 }
             }, 1000);
         }
-
-        // ============================
-        // START APPLICATION
-        // ============================
-        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
