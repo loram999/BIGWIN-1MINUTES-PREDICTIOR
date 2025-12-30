@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>BIGWIN 1MINUTES PREDICTIOR</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIGWIN WINGO 1MINUTES PREDICTIOR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -16,27 +16,18 @@
             --warning: #f59e0b;
             --dark: #0f172a;
             --darker: #020617;
-            --card-bg: rgba(30, 41, 59, 0.9);
-            --border: rgba(59, 130, 246, 0.3);
+            --card-bg: #1e293b;
+            --border: #334155;
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
-            --glass: rgba(255, 255, 255, 0.05);
-            --radius: 12px;
-            --radius-lg: 16px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-            --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
+            --radius: 8px;
+            --radius-sm: 6px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html {
-            overflow-x: hidden;
         }
 
         body {
@@ -44,26 +35,13 @@
             background: var(--darker);
             color: var(--text-primary);
             min-height: 100vh;
-            line-height: 1.6;
-            overflow-x: hidden;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-            position: relative;
+            line-height: 1.4;
+            padding: 16px;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-            z-index: -1;
-            pointer-events: none;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         /* Key Page */
@@ -77,7 +55,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10000;
+            z-index: 1000;
             padding: 20px;
         }
 
@@ -85,121 +63,76 @@
             display: none;
         }
 
-        .key-container {
+        .key-box {
             background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            max-width: 500px;
+            border-radius: var(--radius);
+            padding: 32px;
             width: 100%;
-            box-shadow: var(--shadow-lg);
-            backdrop-filter: blur(10px);
+            max-width: 400px;
             text-align: center;
+            border: 1px solid var(--border);
         }
 
-        .key-header {
-            margin-bottom: 30px;
+        .key-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary);
         }
 
-        .key-header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .key-header p {
+        .key-subtitle {
             color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-
-        .key-input-container {
-            margin-bottom: 25px;
+            margin-bottom: 24px;
+            font-size: 14px;
         }
 
         .key-input {
             width: 100%;
-            padding: 15px 20px;
-            background: rgba(30, 41, 59, 0.7);
+            padding: 14px;
+            background: #0f172a;
             border: 2px solid var(--border);
-            border-radius: var(--radius);
+            border-radius: var(--radius-sm);
             color: var(--text-primary);
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 16px;
             text-align: center;
-            letter-spacing: 2px;
-            transition: all 0.3s;
+            margin-bottom: 16px;
         }
 
         .key-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
         }
 
         .key-btn {
             width: 100%;
-            padding: 15px;
-            background: var(--gradient-primary);
+            padding: 14px;
+            background: var(--primary);
             color: white;
             border: none;
-            border-radius: var(--radius);
-            font-size: 1.1rem;
-            font-weight: 700;
+            border-radius: var(--radius-sm);
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            transition: background 0.2s;
         }
 
         .key-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
-        }
-
-        .key-error {
-            color: var(--danger);
-            margin-top: 10px;
-            font-size: 0.9rem;
-            min-height: 20px;
+            background: var(--primary-dark);
         }
 
         .key-hint {
-            margin-top: 20px;
+            margin-top: 16px;
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            padding: 10px;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: var(--radius);
+            font-size: 12px;
         }
 
-        /* Main App - Initially Hidden */
+        /* Main App */
         .main-app {
             display: none;
-            width: 100%;
         }
 
         .main-app.active {
             display: block;
-        }
-
-        .container {
-            max-width: 100%;
-            width: 100%;
-            margin: 0 auto;
-            padding: 16px;
-            overflow-x: hidden;
-        }
-
-        @media (min-width: 768px) {
-            .container {
-                max-width: 1200px;
-                padding: 20px;
-            }
         }
 
         /* Header */
@@ -207,183 +140,203 @@
             text-align: center;
             margin-bottom: 24px;
             padding-top: 8px;
-            width: 100%;
         }
 
         .header h1 {
-            font-size: clamp(1.5rem, 4vw, 1.8rem);
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            word-break: break-word;
+            gap: 8px;
         }
 
         .header p {
             color: var(--text-secondary);
-            font-size: clamp(0.85rem, 3vw, 0.95rem);
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0 8px;
+            font-size: 12px;
         }
 
-        /* Timer Section - Fixed Layout */
-        .timer-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        @media (max-width: 640px) {
-            .timer-section {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-        }
-
-        .timer-card {
-            text-align: center;
-            padding: clamp(16px, 4vw, 20px);
-            width: 100%;
-            min-height: 140px;
+        /* Mode Selector */
+        .mode-selector {
             display: flex;
-            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
             justify-content: center;
         }
 
-        .timer-label {
-            font-size: clamp(0.8rem, 3vw, 0.85rem);
-            color: var(--text-secondary);
-            margin-bottom: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .timer-value {
-            font-size: clamp(2rem, 6vw, 2.2rem);
-            font-weight: 900;
-            font-family: 'Courier New', monospace;
-            color: var(--primary);
-            line-height: 1;
-            margin-bottom: 12px;
-            word-break: break-word;
-            overflow-wrap: break-word;
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            overflow: hidden;
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: var(--gradient-primary);
-            border-radius: 3px;
-            transition: width 1s linear;
-            width: 100%;
-        }
-
-        /* Main Content Grid */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 24px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 28px;
-            }
-        }
-
-        /* Cards */
-        .card {
+        .mode-btn {
+            flex: 1;
+            max-width: 180px;
+            padding: 12px;
+            border: none;
+            border-radius: var(--radius-sm);
             background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: clamp(16px, 4vw, 20px);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(10px);
-            width: 100%;
-            max-width: 100%;
-            overflow: hidden;
-        }
-
-        .card-title {
-            font-size: clamp(0.9rem, 3vw, 1rem);
             color: var(--text-secondary);
-            margin-bottom: 16px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            font-weight: 600;
+            border: 1px solid var(--border);
         }
 
-        /* Prediction Display */
-        .prediction-display {
-            text-align: center;
-            padding: clamp(20px, 5vw, 24px);
+        .mode-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .mode-btn.sniper.active {
+            background: var(--danger);
+            border-color: var(--danger);
+        }
+
+        .mode-indicator {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: white;
+            color: var(--dark);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* Timer Section */
+        .timer-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
             margin-bottom: 20px;
-            width: 100%;
         }
 
-        .prediction-label {
-            font-size: clamp(0.85rem, 3vw, 0.9rem);
+        .timer-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            text-align: center;
+        }
+
+        .timer-label {
+            font-size: 11px;
             color: var(--text-secondary);
             margin-bottom: 8px;
             font-weight: 600;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
-        .prediction-main {
-            font-size: clamp(2.5rem, 8vw, 3rem);
-            font-weight: 900;
+        .timer-value {
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: #334155;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: width 1s linear;
+        }
+
+        /* Prediction Display */
+        .prediction-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .prediction-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .prediction-value {
+            font-size: 32px;
+            font-weight: 800;
             margin: 12px 0;
             line-height: 1;
-            letter-spacing: 1px;
         }
 
-        .prediction-main.big {
+        .prediction-value.big {
             color: var(--success);
-            text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
         }
 
-        .prediction-main.small {
+        .prediction-value.small {
             color: var(--danger);
-            text-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+        }
+
+        .prediction-value.skip {
+            color: var(--warning);
+            font-size: 28px;
         }
 
         .prediction-details {
+            font-size: 12px;
             color: var(--text-secondary);
-            font-size: clamp(0.8rem, 3vw, 0.9rem);
             margin-top: 12px;
             line-height: 1.4;
-            max-width: 100%;
-            word-break: break-word;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* Status Bar */
@@ -391,216 +344,172 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: clamp(14px, 3vw, 16px) clamp(16px, 4vw, 20px);
+            padding: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 12px;
-            width: 100%;
         }
 
         .status-info {
             display: flex;
             align-items: center;
-            gap: 10px;
-            flex: 1;
-            min-width: 200px;
+            gap: 8px;
         }
 
         .status-indicator {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            flex-shrink: 0;
         }
 
         .status-indicator.connected {
             background: var(--success);
-            box-shadow: 0 0 10px var(--success);
         }
 
         .status-indicator.loading {
             background: var(--warning);
-            animation: pulse 1.5s infinite;
+            animation: pulse 1s infinite;
         }
 
-        .status-indicator.error {
-            background: var(--danger);
-            box-shadow: 0 0 10px var(--danger);
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .status-text {
+            font-size: 12px;
             font-weight: 600;
-            font-size: clamp(0.8rem, 3vw, 0.9rem);
-            flex: 1;
-            word-break: break-word;
         }
 
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        @media (min-width: 480px) {
-            .stats-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 16px;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 8px;
-            }
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: clamp(14px, 3vw, 16px);
-            min-height: 90px;
+        .refresh-btn {
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            align-items: center;
+            gap: 6px;
         }
 
-        .stat-value {
-            font-size: clamp(1.5rem, 5vw, 1.8rem);
-            font-weight: 900;
-            margin-bottom: 4px;
-            line-height: 1;
-            color: var(--primary);
+        /* Share Buttons */
+        .share-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
-        .stat-label {
-            font-size: clamp(0.7rem, 2.5vw, 0.8rem);
-            color: var(--text-secondary);
+        .share-btn {
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
             font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        /* Tabs */
+        /* Tabs Container */
         .tabs-container {
-            margin-top: 20px;
-            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
         }
 
         .tabs-header {
             display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-        }
-
-        .tabs-header::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        .tabs-header::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-        }
-
-        .tabs-header::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 2px;
+            background: #0f172a;
+            border-bottom: 1px solid var(--border);
         }
 
         .tab-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 16px;
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
             color: var(--text-secondary);
+            font-size: 12px;
             font-weight: 600;
-            font-size: clamp(0.8rem, 3vw, 0.85rem);
             cursor: pointer;
-            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
             display: flex;
             align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            flex-shrink: 0;
+            justify-content: center;
+            gap: 6px;
         }
 
         .tab-btn.active {
-            background: var(--gradient-primary);
             color: white;
-            border-color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .tab-btn.sniper.active {
+            border-bottom: 2px solid var(--danger);
+            background: rgba(239, 68, 68, 0.1);
         }
 
         .tab-content {
             display: none;
-            width: 100%;
+            max-height: 300px;
+            overflow-y: auto;
         }
 
         .tab-content.active {
             display: block;
         }
 
-        /* Tables */
+        /* Table */
         .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            border-radius: var(--radius);
-            margin: 0;
-            position: relative;
+            padding: 0;
         }
 
         .data-table {
             width: 100%;
-            min-width: 600px;
             border-collapse: collapse;
-            table-layout: fixed;
-        }
-
-        @media (max-width: 768px) {
-            .data-table {
-                min-width: 100%;
-            }
+            font-size: 11px;
         }
 
         .data-table th {
-            background: rgba(59, 130, 246, 0.1);
-            padding: 12px;
+            background: #0f172a;
+            padding: 12px 8px;
             text-align: left;
             font-weight: 600;
-            font-size: clamp(0.75rem, 2.5vw, 0.8rem);
             color: var(--text-secondary);
             border-bottom: 1px solid var(--border);
-            white-space: nowrap;
+            position: sticky;
+            top: 0;
         }
 
         .data-table td {
-            padding: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: clamp(0.8rem, 3vw, 0.85rem);
-            word-break: break-word;
+            padding: 12px 8px;
+            border-bottom: 1px solid #2d3748;
         }
 
-        .data-table tr:hover {
-            background: rgba(59, 130, 246, 0.05);
+        .data-table tr:last-child td {
+            border-bottom: none;
         }
 
         /* Badges */
         .badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4px 10px;
-            border-radius: 6px;
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
             font-weight: 700;
-            font-size: clamp(0.7rem, 2.5vw, 0.75rem);
-            min-width: 60px;
-            max-width: 100%;
-            word-break: break-word;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .badge-success {
@@ -634,72 +543,52 @@
             gap: 8px;
         }
 
-        .number-display {
-            width: clamp(32px, 8vw, 36px);
-            height: clamp(32px, 8vw, 36px);
+        .number-circle {
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            font-weight: 900;
-            font-size: clamp(0.9rem, 3vw, 1rem);
-            font-family: 'Courier New', monospace;
-            flex-shrink: 0;
+            font-weight: 700;
+            font-size: 11px;
         }
 
         .number-big {
             background: rgba(16, 185, 129, 0.2);
             color: var(--success);
-            border: 2px solid rgba(16, 185, 129, 0.4);
+            border: 2px solid rgba(16, 185, 129, 0.3);
         }
 
         .number-small {
             background: rgba(239, 68, 68, 0.2);
             color: var(--danger);
-            border: 2px solid rgba(239, 68, 68, 0.4);
+            border: 2px solid rgba(239, 68, 68, 0.3);
         }
 
-        /* Buttons */
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: clamp(0.85rem, 3vw, 0.9rem);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-            background: var(--gradient-primary);
-            color: white;
-            flex-shrink: 0;
+        /* Mode Visibility */
+        .normal-mode-only {
+            display: block;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+        .sniper-mode-only {
+            display: none;
         }
 
-        /* Loading */
-        .loading-spinner {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            border: 2px solid rgba(59, 130, 246, 0.3);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .mode-normal .normal-mode-only {
+            display: block;
         }
 
-        /* Animations */
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .mode-normal .sniper-mode-only {
+            display: none !important;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        .mode-sniper .sniper-mode-only {
+            display: block;
+        }
+
+        .mode-sniper .normal-mode-only {
+            display: none !important;
         }
 
         /* Empty State */
@@ -707,239 +596,345 @@
             text-align: center;
             padding: 40px 20px;
             color: var(--text-secondary);
-            width: 100%;
         }
 
         .empty-state i {
-            font-size: 2rem;
+            font-size: 24px;
             margin-bottom: 12px;
             opacity: 0.5;
         }
 
-        /* Mobile Optimization */
-        @media (max-width: 480px) {
-            .key-container {
-                padding: 25px;
-            }
-            
-            .key-header h1 {
-                font-size: 2rem;
-            }
-            
+        /* Responsive */
+        @media (min-width: 768px) {
             .container {
-                padding: 12px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
             }
             
+            .left-column {
+                grid-column: 1;
+            }
+            
+            .right-column {
+                grid-column: 2;
+            }
+            
+            .prediction-card {
+                margin-bottom: 16px;
+            }
+            
+            .stats-grid {
+                margin-bottom: 16px;
+            }
+        }
+
+        @media (max-width: 767px) {
             .timer-section {
-                gap: 10px;
+                grid-template-columns: 1fr;
             }
             
-            .timer-card {
-                min-height: 120px;
-                padding: 16px;
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .prediction-main {
-                font-size: 2.2rem;
+            .share-buttons {
+                grid-template-columns: 1fr;
             }
             
-            .status-bar {
-                padding: 12px;
+            .mode-selector {
+                flex-wrap: wrap;
             }
-            
-            .stat-card {
-                padding: 12px;
-                min-height: 80px;
-            }
-            
-            .tab-btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-            
-            .data-table th,
-            .data-table td {
-                padding: 10px;
-            }
-        }
-
-        /* Prevent overflow */
-        .no-overflow {
-            max-width: 100%;
-            overflow: hidden;
-        }
-
-        .text-truncate {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
     </style>
 </head>
 <body>
     <!-- Key Page -->
     <div class="key-page" id="keyPage">
-        <div class="key-container">
-            <div class="key-header">
-                <h1><i class="fas fa-lock"></i> Access Required</h1>
-                <p>Enter access key to use the AI Predictor</p>
-            </div>
+        <div class="key-box">
+            <h1 class="key-title"><i class="fas fa-lock"></i> AI Predictor</h1>
+            <p class="key-subtitle">Enter access key to unlock system</p>
             
-            <div class="key-input-container">
-                <input type="text" 
-                       id="keyInput" 
-                       class="key-input" 
-                       placeholder="Enter access key..." 
-                       autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="none"
-                       spellcheck="false">
-                <div class="key-error" id="keyError"></div>
-            </div>
+            <input type="text" id="keyInput" class="key-input" placeholder="Enter access key...">
+            <div id="keyError" style="color: var(--danger); font-size: 12px; margin-bottom: 12px; min-height: 16px;"></div>
             
             <button class="key-btn" onclick="checkKey()">
                 <i class="fas fa-unlock-alt"></i> Access System
             </button>
             
-            <div class="key-hint">
-                <i class="fas fa-info-circle"></i> Producer: <strong>XENNIX</strong>JENIUS CREATOR TEAM
-            </div>
+            <p class="key-hint">
+                <i class="fas fa-info-circle"></i> XENNIX JENIUS CREATOR TEAM
+            </p>
         </div>
     </div>
 
     <!-- Main App -->
     <div class="main-app" id="mainApp">
         <div class="container">
-            <!-- Header -->
-            <header class="header">
-                <h1><i class="fas fa-brain"></i> BIGWIN 1MINUTES PREDICTIOR</h1>
-                <p>FREE TO USE • USE AT YOUR OWN RISKS</p>
-            </header>
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Header -->
+                <header class="header">
+                    <h1><i class="fas fa-brain"></i> BIGWIN WINGO 1MINUTES PREDICTIOR</h1>
+                    <p>JENIUS CREATOR TEAM</p>
+                </header>
 
-            <!-- Timer Section -->
-            <div class="timer-section">
-                <div class="card timer-card">
-                    <div class="timer-label">Current Period</div>
-                    <div class="timer-value" id="currentPeriod">--</div>
-                    <div class="progress-container">
-                        <div class="progress-bar" id="periodProgress" style="width: 100%"></div>
+                <!-- Mode Selector -->
+                <div class="mode-selector">
+                    <button class="mode-btn active" data-mode="normal" onclick="switchMode('normal')">
+                        <div class="mode-indicator">N</div>
+                        <span>Normal Mode</span>
+                    </button>
+                    <button class="mode-btn sniper" data-mode="sniper" onclick="switchMode('sniper')">
+                        <div class="mode-indicator">S</div>
+                        <span>Sniper Mode</span>
+                    </button>
+                </div>
+
+                <!-- Timer Section -->
+                <div class="timer-section">
+                    <div class="timer-card">
+                        <div class="timer-label">
+                            <i class="fas fa-clock"></i> Current Period
+                        </div>
+                        <div class="timer-value" id="currentPeriod">--</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="periodProgress"></div>
+                        </div>
+                    </div>
+                    <div class="timer-card">
+                        <div class="timer-label">
+                            <i class="fas fa-hourglass"></i> Next Update
+                        </div>
+                        <div class="timer-value" id="countdownTimer">00:00</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="countdownProgress"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="card timer-card">
-                    <div class="timer-label">Next Update In</div>
-                    <div class="timer-value" id="countdownTimer">00:00</div>
-                    <div class="progress-container">
-                        <div class="progress-bar" id="countdownProgress" style="width: 100%"></div>
+
+                <!-- Prediction Display -->
+                <div class="prediction-card">
+                    <div class="prediction-label">
+                        <i class="fas fa-robot"></i> AI PREDICTION
                     </div>
+                    <div class="prediction-value" id="aiPrediction">--</div>
+                    <div class="prediction-details" id="predictionDetails">
+                        Loading prediction...
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid normal-mode-only">
+                    <div class="stat-card">
+                        <div class="stat-value" id="normalWins">0</div>
+                        <div class="stat-label">WINS</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="normalLosses">0</div>
+                        <div class="stat-label">LOSSES</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="normalWinRate">0%</div>
+                        <div class="stat-label">WIN RATE</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="normalStreak">0</div>
+                        <div class="stat-label">STREAK</div>
+                    </div>
+                </div>
+
+                <div class="stats-grid sniper-mode-only">
+                    <div class="stat-card">
+                        <div class="stat-value" id="sniperWins">0</div>
+                        <div class="stat-label">WINS</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="sniperLosses">0</div>
+                        <div class="stat-label">LOSSES</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="sniperAccuracy">0%</div>
+                        <div class="stat-label">ACCURACY</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="sniperSkips">0</div>
+                        <div class="stat-label">SKIPS</div>
+                    </div>
+                </div>
+
+                <!-- Status Bar -->
+                <div class="status-bar">
+                    <div class="status-info">
+                        <div class="status-indicator loading" id="statusIndicator"></div>
+                        <div class="status-text" id="statusText">Initializing...</div>
+                    </div>
+                    <button class="refresh-btn" onclick="refreshData()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+
+                <!-- Share Buttons -->
+                <div class="share-buttons">
+                    <button class="share-btn normal-mode-only" onclick="shareCurrentPrediction()">
+                        <i class="fas fa-share-alt"></i> Share Results
+                    </button>
+                    <button class="share-btn normal-mode-only" onclick="sharePredictionHistory()">
+                        <i class="fas fa-history"></i> Share History
+                    </button>
+                    <button class="share-btn sniper-mode-only" onclick="shareSniperResults()">
+                        <i class="fas fa-crosshairs"></i> Sniper Results
+                    </button>
+                    <button class="share-btn sniper-mode-only" onclick="shareSniperHistory()">
+                        <i class="fas fa-history"></i> Sniper History
+                    </button>
                 </div>
             </div>
 
-            <!-- Main Content -->
-            <div class="main-content">
-                <!-- Left Column -->
-                <div class="left-column">
-                    <!-- Prediction Display -->
-                    <div class="card prediction-display">
-                        <div class="prediction-label">AI PREDICTION FOR NEXT ROUND</div>
-                        <div class="prediction-main" id="aiPrediction">--</div>
-                        <div class="prediction-details" id="predictionDetails">
-                            <span class="loading-spinner"></span> Loading prediction...
-                        </div>
-                    </div>
-
-                    <!-- Status Bar -->
-                    <div class="card status-bar">
-                        <div class="status-info">
-                            <div class="status-indicator loading" id="statusIndicator"></div>
-                            <div class="status-text" id="statusText">Initializing system...</div>
-                        </div>
-                        <button class="btn" onclick="refreshData()">
-                            <i class="fas fa-sync-alt"></i> Refresh
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- Normal Mode Tabs -->
+                <div class="tabs-container normal-mode-only">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="liveResults">
+                            <i class="fas fa-broadcast-tower"></i> Live Results
+                        </button>
+                        <button class="tab-btn" data-tab="normalPredictions">
+                            <i class="fas fa-robot"></i> Predictions
                         </button>
                     </div>
 
-                    <!-- Stats Grid -->
-                    <div class="stats-grid">
-                        <div class="card stat-card">
-                            <div class="stat-value" id="winCount">0</div>
-                            <div class="stat-label">WINS</div>
+                    <div id="liveResults" class="tab-content active">
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Period</th>
+                                        <th>Number</th>
+                                        <th>Result</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="liveResultsBody">
+                                    <tr>
+                                        <td colspan="4" class="empty-state">
+                                            <i class="fas fa-spinner fa-spin"></i>
+                                            <div>Loading live results...</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="card stat-card">
-                            <div class="stat-value" id="loseCount">0</div>
-                            <div class="stat-label">LOSSES</div>
-                        </div>
-                        <div class="card stat-card">
-                            <div class="stat-value" id="winRate">0%</div>
-                            <div class="stat-label">WIN RATE</div>
-                        </div>
-                        <div class="card stat-card">
-                            <div class="stat-value" id="currentStreak">0</div>
-                            <div class="stat-label">STREAK</div>
+                    </div>
+
+                    <div id="normalPredictions" class="tab-content">
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Period</th>
+                                        <th>Prediction</th>
+                                        <th>Actual</th>
+                                        <th>Result</th>
+                                        <th>Conf</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="normalPredictionsBody">
+                                    <tr>
+                                        <td colspan="5" class="empty-state">
+                                            <i class="fas fa-history"></i>
+                                            <div>No predictions yet</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Column -->
-                <div class="right-column">
-                    <!-- Tabs Section -->
-                    <div class="tabs-container">
-                        <div class="tabs-header">
-                            <button class="tab-btn active" data-tab="liveResults">
-                                <i class="fas fa-broadcast-tower"></i>
-                                Game Results
-                            </button>
-                            <button class="tab-btn" data-tab="predictions">
-                                <i class="fas fa-robot"></i>
-                                Predictions
-                            </button>
-                        </div>
+                <!-- Sniper Mode Tabs -->
+                <div class="tabs-container sniper-mode-only">
+                    <div class="tabs-header">
+                        <button class="tab-btn sniper active" data-tab="liveResultsSniper">
+                            <i class="fas fa-broadcast-tower"></i> Live Results
+                        </button>
+                        <button class="tab-btn sniper" data-tab="sniperPredictions">
+                            <i class="fas fa-crosshairs"></i> Sniper Calls
+                        </button>
+                        <button class="tab-btn sniper" data-tab="sniperLog">
+                            <i class="fas fa-list"></i> Activity Log
+                        </button>
+                    </div>
 
-                        <!-- Live Results Tab -->
-                        <div id="liveResultsTab" class="tab-content active">
-                            <div class="table-wrapper">
-                                <table class="data-table">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 35%">Period</th>
-                                            <th style="width: 25%">Number</th>
-                                            <th style="width: 20%">Result</th>
-                                            <th style="width: 20%">Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="liveResultsBody">
-                                        <tr>
-                                            <td colspan="4" class="empty-state">
-                                                <i class="fas fa-spinner fa-spin"></i>
-                                                <div>Loading live results...</div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div id="liveResultsSniper" class="tab-content active">
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Period</th>
+                                        <th>Number</th>
+                                        <th>Result</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="liveResultsBodySniper">
+                                    <tr>
+                                        <td colspan="4" class="empty-state">
+                                            <i class="fas fa-spinner fa-spin"></i>
+                                            <div>Loading live results...</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
 
-                        <!-- Predictions Tab -->
-                        <div id="predictionsTab" class="tab-content">
-                            <div class="table-wrapper">
-                                <table class="data-table">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 40%">Period</th>
-                                            <th style="width: 20%">Prediction</th>
-                                            <th style="width: 20%">Actual</th>
-                                            <th style="width: 20%">Result</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="predictionsBody">
-                                        <tr>
-                                            <td colspan="4" class="empty-state">
-                                                <i class="fas fa-history"></i>
-                                                <div>No predictions yet</div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div id="sniperPredictions" class="tab-content">
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Period</th>
+                                        <th>Signal</th>
+                                        <th>Conf</th>
+                                        <th>Actual</th>
+                                        <th>Result</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sniperPredictionsBody">
+                                    <tr>
+                                        <td colspan="6" class="empty-state">
+                                            <i class="fas fa-crosshairs"></i>
+                                            <div>No sniper calls yet</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="sniperLog" class="tab-content">
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Period</th>
+                                        <th>Signal</th>
+                                        <th>Conf</th>
+                                        <th>Decision</th>
+                                        <th>Reason</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sniperLogBody">
+                                    <tr>
+                                        <td colspan="5" class="empty-state">
+                                            <i class="fas fa-list"></i>
+                                            <div>No activity logged yet</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -948,16 +943,13 @@
     </div>
 
     <script>
-        // ============================
-        // KEY AUTHENTICATION
-        // ============================
+        // Key Authentication
         const CORRECT_KEY = "jclottery";
         const keyPage = document.getElementById('keyPage');
         const mainApp = document.getElementById('mainApp');
         const keyInput = document.getElementById('keyInput');
         const keyError = document.getElementById('keyError');
 
-        // Check if already authenticated
         function checkSavedKey() {
             const savedKey = localStorage.getItem('lottery_key');
             if (savedKey === CORRECT_KEY) {
@@ -965,112 +957,51 @@
             }
         }
 
-        // Check entered key
         function checkKey() {
             const enteredKey = keyInput.value.trim().toLowerCase();
             
             if (!enteredKey) {
-                showError("Please enter access key");
+                keyError.textContent = "Please enter access key";
                 return;
             }
             
             if (enteredKey === CORRECT_KEY) {
-                // Save to localStorage
                 localStorage.setItem('lottery_key', enteredKey);
                 showMainApp();
             } else {
-                showError("Invalid access key");
+                keyError.textContent = "Invalid access key";
                 keyInput.value = '';
                 keyInput.focus();
-                shakeInput();
             }
         }
 
-        // Show error message
-        function showError(message) {
-            keyError.textContent = message;
-            keyError.style.color = 'var(--danger)';
-        }
-
-        // Shake animation for wrong key
-        function shakeInput() {
-            keyInput.style.animation = 'none';
-            setTimeout(() => {
-                keyInput.style.animation = 'shake 0.5s';
-            }, 10);
-        }
-
-        // Add shake animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-                20%, 40%, 60%, 80% { transform: translateX(5px); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Show main app
         function showMainApp() {
             keyPage.classList.add('hidden');
             mainApp.classList.add('active');
             initApp();
         }
 
-        // Handle Enter key
         keyInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkKey();
-            }
+            if (e.key === 'Enter') checkKey();
         });
 
-        // Auto-focus on input
         document.addEventListener('DOMContentLoaded', function() {
             checkSavedKey();
             keyInput.focus();
         });
 
-        // ============================
-        // MAIN APPLICATION
-        // ============================
-        const API_CONFIG = {
-            url: 'https://api.bigwinqaz.com/api/webapi/GetNoaverageEmerdList',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                'Accept': 'application/json, text/plain, */*',
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOiIxNzY2NjM0MDEyIiwibmJmIjoiMTc2NjYzNDAxIiwiZXhwIjoiMTc2NjYzNTgxMiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjEyLzI1LzIwMjUgMTA6NDA6MTIgQU0iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBY2Nlc3NfVGFrZW4iLCJVc2VySWQiOiIxMTMyNTIiLCJVc2VyTmFtZSI6Ijk1OTQyMjQ5MTAyMCIsIlVzZXJQaG90byI6IjEiLCJOaWNrTmFtZSI6Ik1lbWJlck5OR1paREI0IiwiQW1vdW50IjoiNjAuMDAiLCJJbnRlZ3JhbCI6IjAiLCJMb2dpbk1hcmsiOiJINSIsIkxvZ2luVGltZSI6IjEyLzI1LzIwMjUgMTA6MTA6MTIgQU0iLCJMb2dpbklQQWRkcmVzcyI6IjEwMy4xNzIuMTgxLjQiLCJEYk51bWJlciI6IjAiLCJJc3ZhbGlkYXRvciI6IjAiLCJLZXlDb2RlIjoiMTciLCJUb2tlblR5cGUiOiJBY2Nlc3NfVG9rZW4iLCJQaG9uZVR5cGUiOiIxIiwiVXNlclR5cGUiOiIwIiwiVXNlck5hbWUiOiIiLCJpc3MiOiJqfeRJc3N1ZXIiLCJhdWQiOiJsb3R0ZXJ5VGlja2V0In0.q3F-b66aTgUSyQO0GWFRSo3pA613Dx5irOp8S5CVx-o',
-                'Ar-Origin': 'https://www.777bigwingame.app'
-            },
-            body: {
-                pageSize: 10,
-                pageNo: 1,
-                typeId: 1,
-                language: 0,
-                random: 'da8913dfe5994aeab157b34bc3118e1d',
-                signature: 'E8FF7E38380D58E6303547940A069C02',
-                timestamp: Math.floor(Date.now() / 1000)
-            }
-        };
-
-        // ============================
-        // STATE MANAGEMENT
-        // ============================
+        // State Management
         const state = {
             gameHistory: [],
-            predictions: [],
-            stats: {
-                wins: 0,
-                losses: 0,
-                winStreak: 0,
-                currentStreak: 0,
-                bestStreak: 0
-            },
-            isConnected: false,
-            retryCount: 0,
+            normalPredictions: [],
+            sniperPredictions: [],
+            sniperLogs: [],
+            normalStats: { wins: 0, losses: 0, currentStreak: 0 },
+            sniperStats: { wins: 0, losses: 0, skips: 0, totalPredictions: 0 },
+            currentMode: 'normal',
             pendingPrediction: null,
-            timerInterval: null
+            timerInterval: null,
+            sniperThreshold: 75
         };
 
         // DOM Elements
@@ -1079,1005 +1010,399 @@
             countdownTimer: document.getElementById('countdownTimer'),
             aiPrediction: document.getElementById('aiPrediction'),
             predictionDetails: document.getElementById('predictionDetails'),
-            winCount: document.getElementById('winCount'),
-            loseCount: document.getElementById('loseCount'),
-            winRate: document.getElementById('winRate'),
-            currentStreak: document.getElementById('currentStreak'),
             statusIndicator: document.getElementById('statusIndicator'),
             statusText: document.getElementById('statusText'),
+            normalWins: document.getElementById('normalWins'),
+            normalLosses: document.getElementById('normalLosses'),
+            normalWinRate: document.getElementById('normalWinRate'),
+            normalStreak: document.getElementById('normalStreak'),
+            sniperWins: document.getElementById('sniperWins'),
+            sniperLosses: document.getElementById('sniperLosses'),
+            sniperAccuracy: document.getElementById('sniperAccuracy'),
+            sniperSkips: document.getElementById('sniperSkips'),
             liveResultsBody: document.getElementById('liveResultsBody'),
-            predictionsBody: document.getElementById('predictionsBody'),
-            periodProgress: document.getElementById('periodProgress'),
-            countdownProgress: document.getElementById('countdownProgress')
+            liveResultsBodySniper: document.getElementById('liveResultsBodySniper'),
+            normalPredictionsBody: document.getElementById('normalPredictionsBody'),
+            sniperPredictionsBody: document.getElementById('sniperPredictionsBody'),
+            sniperLogBody: document.getElementById('sniperLogBody')
         };
 
-        // ============================
-        // MULTI-STRATEGY AI PREDICTION SYSTEM
-        // ============================
-
-        // STRATEGY 1: PATTERN RECOGNITION
-        function patternRecognitionStrategy(numbers) {
-            let scoreBig = 0;
-            let scoreSmall = 0;
-            
-            // 1. Fibonacci Pattern Detection
-            if (numbers.length >= 4) {
-                for (let i = 0; i < numbers.length - 3; i++) {
-                    if (numbers[i] + numbers[i+1] === numbers[i+2] ||
-                        numbers[i] + numbers[i+1] === numbers[i+3]) {
-                        const nextExpected = numbers[numbers.length-2] + numbers[numbers.length-1];
-                        if (nextExpected >= 5) scoreBig += 15;
-                        else scoreSmall += 15;
-                        break;
-                    }
-                }
-            }
-            
-            // 2. Arithmetic Sequence Detection
-            const diffs = [];
-            for (let i = 1; i < Math.min(4, numbers.length); i++) {
-                diffs.push(numbers[i] - numbers[i-1]);
-            }
-            
-            if (diffs.length >= 2 && Math.abs(diffs[0]) === Math.abs(diffs[1])) {
-                const nextDiff = diffs[diffs.length-1];
-                const nextNumber = numbers[0] + nextDiff;
-                if (nextNumber >= 5) scoreBig += 20;
-                else scoreSmall += 20;
-            }
-            
-            // 3. Geometric Pattern (if numbers were normalized)
-            const ratios = [];
-            for (let i = 1; i < Math.min(3, numbers.length); i++) {
-                if (numbers[i-1] !== 0) {
-                    ratios.push(numbers[i] / numbers[i-1]);
-                }
-            }
-            
-            if (ratios.length >= 2 && Math.abs(ratios[0] - ratios[1]) < 0.5) {
-                const nextRatio = ratios[ratios.length-1];
-                const nextNumber = numbers[0] * nextRatio;
-                if (nextNumber >= 5) scoreBig += 15;
-                else scoreSmall += 15;
-            }
-            
-            // 4. Symmetry Pattern
-            if (numbers.length >= 5) {
-                const mid = Math.floor(numbers.length / 2);
-                let isSymmetric = true;
-                for (let i = 0; i < mid; i++) {
-                    if (Math.abs(numbers[i] - numbers[numbers.length-1-i]) > 2) {
-                        isSymmetric = false;
-                        break;
-                    }
-                }
-                if (isSymmetric) {
-                    // Symmetric pattern suggests reversal
-                    if (numbers[0] >= 5) scoreSmall += 25;
-                    else scoreBig += 25;
-                }
-            }
-            
-            return { scoreBig, scoreSmall, strategy: "Pattern Recognition" };
-        }
-
-        // STRATEGY 2: STATISTICAL ANALYSIS
-        function statisticalAnalysisStrategy(numbers, stats) {
-            let scoreBig = 0;
-            let scoreSmall = 0;
-            
-            // 1. Bayesian Probability
-            const bigCount = stats.bigCount;
-            const smallCount = stats.smallCount;
-            const total = numbers.length;
-            
-            // Prior probability (assuming equal chance)
-            const priorBig = 0.5;
-            const priorSmall = 0.5;
-            
-            // Likelihood (based on observed frequency)
-            const likelihoodBig = bigCount / total;
-            const likelihoodSmall = smallCount / total;
-            
-            // Posterior probability (Bayes' Theorem)
-            const posteriorBig = (likelihoodBig * priorBig) / 
-                (likelihoodBig * priorBig + likelihoodSmall * priorSmall);
-            const posteriorSmall = 1 - posteriorBig;
-            
-            if (posteriorBig > 0.6) scoreBig += Math.round(posteriorBig * 30);
-            if (posteriorSmall > 0.6) scoreSmall += Math.round(posteriorSmall * 30);
-            
-            // 2. Markov Chain Analysis (1st order)
-            if (numbers.length >= 3) {
-                const transitions = {
-                    'BtoB': 0, 'BtoS': 0,
-                    'StoB': 0, 'StoS': 0
-                };
-                
-                for (let i = 1; i < numbers.length; i++) {
-                    const prev = numbers[i-1] >= 5 ? 'B' : 'S';
-                    const curr = numbers[i] >= 5 ? 'B' : 'S';
-                    transitions[`${prev}to${curr}`]++;
-                }
-                
-                const lastType = numbers[0] >= 5 ? 'B' : 'S';
-                const totalTransitions = transitions[`${lastType}toB`] + transitions[`${lastType}toS`];
-                
-                if (totalTransitions > 0) {
-                    const probB = transitions[`${lastType}toB`] / totalTransitions;
-                    const probS = transitions[`${lastType}toS`] / totalTransitions;
+        // Tab Management
+        function initializeTabs() {
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+                    const container = button.closest('.tabs-container');
                     
-                    if (probB > 0.7) scoreBig += 25;
-                    else if (probS > 0.7) scoreSmall += 25;
-                }
-            }
-            
-            // 3. Standard Deviation Analysis
-            const stdDev = Math.sqrt(stats.variance);
-            const zScore = (numbers[0] - stats.avg) / stdDev;
-            
-            if (Math.abs(zScore) > 1.5) {
-                // Extreme value detected, regression to mean
-                if (numbers[0] >= 5) scoreSmall += 20;
-                else scoreBig += 20;
-            }
-            
-            // 4. Confidence Interval Prediction
-            const marginError = 1.96 * stdDev / Math.sqrt(numbers.length);
-            const lowerBound = stats.avg - marginError;
-            const upperBound = stats.avg + marginError;
-            
-            if (upperBound < 5) scoreBig += 15;
-            else if (lowerBound >= 5) scoreSmall += 15;
-            
-            return { scoreBig, scoreSmall, strategy: "Statistical Analysis" };
-        }
-
-        // STRATEGY 3: MACHINE LEARNING INSPIRED
-        function machineLearningStrategy(numbers, stats) {
-            let scoreBig = 0;
-            let scoreSmall = 0;
-            
-            // 1. Neural Network inspired features
-            const features = {
-                // Technical indicators
-                movingAverage: stats.avg,
-                rsi: calculateRSI(numbers), // Relative Strength Index
-                macd: calculateMACD(numbers), // Moving Average Convergence Divergence
-                bollingerPosition: calculateBollingerPosition(numbers, stats),
-                
-                // Pattern features
-                hasThreeConsecutive: hasNConsecutive(numbers, 3),
-                hasAlternating: isAlternatingPattern(numbers),
-                hasAscending: isAscendingSequence(numbers.slice(0, 3)),
-                hasDescending: isDescendingSequence(numbers.slice(0, 3)),
-                
-                // Time-based features
-                timeOfDayWeight: getTimeOfDayWeight(),
-                recentVolatility: calculateVolatility(numbers.slice(0, 5))
-            };
-            
-            // 2. Decision Tree inspired rules
-            if (features.rsi > 70) scoreSmall += 20; // Overbought
-            else if (features.rsi < 30) scoreBig += 20; // Oversold
-            
-            if (features.macd.signal > 0) scoreBig += 15;
-            else scoreSmall += 15;
-            
-            if (features.bollingerPosition > 0.8) scoreSmall += 20; // Near upper band
-            else if (features.bollingerPosition < 0.2) scoreBig += 20; // Near lower band
-            
-            // 3. Ensemble learning weights
-            const weights = {
-                trend: 0.3,
-                momentum: 0.25,
-                meanReversion: 0.25,
-                pattern: 0.2
-            };
-            
-            const trendScore = stats.trend > 0 ? 1 : -1;
-            const momentumScore = calculateMomentum(numbers);
-            const meanReversionScore = calculateMeanReversionScore(numbers, stats.avg);
-            
-            const ensembleScore = 
-                trendScore * weights.trend +
-                momentumScore * weights.momentum +
-                meanReversionScore * weights.meanReversion;
-            
-            if (ensembleScore > 0.1) scoreBig += Math.abs(ensembleScore * 40);
-            else if (ensembleScore < -0.1) scoreSmall += Math.abs(ensembleScore * 40);
-            
-            return { scoreBig, scoreSmall, strategy: "Machine Learning" };
-        }
-
-        // STRATEGY 4: GAME THEORY & BEHAVIORAL ANALYSIS
-        function gameTheoryStrategy(numbers) {
-            let scoreBig = 0;
-            let scoreSmall = 0;
-            
-            // 1. Contrarian Strategy (opposite of crowd behavior)
-            const recentPattern = getRecentPattern(numbers.slice(0, 5));
-            if (recentPattern.strength > 0.7) {
-                // Strong pattern detected - game theory suggests it might break
-                if (recentPattern.type === 'big') scoreSmall += 30;
-                else scoreBig += 30;
-            }
-            
-            // 2. Nash Equilibrium inspired
-            // Assuming other players will bet on obvious patterns
-            // We bet against the obvious
-            const obviousPattern = findMostObviousPattern(numbers);
-            if (obviousPattern) {
-                if (obviousPattern === 'big') scoreSmall += 25;
-                else if (obviousPattern === 'small') scoreBig += 25;
-            }
-            
-            // 3. Recursive Thinking
-            // "What would others think that I think?"
-            const firstOrder = predictFirstOrderThinking(numbers);
-            const secondOrder = predictSecondOrderThinking(numbers, firstOrder);
-            
-            if (secondOrder === 'big') scoreBig += 20;
-            else if (secondOrder === 'small') scoreSmall += 20;
-            
-            // 4. Randomness Injection (to avoid being predictable)
-            // Add small random factor to avoid systematic exploitation
-            const randomFactor = Math.random() * 10 - 5; // -5 to +5
-            if (randomFactor > 0) scoreBig += Math.abs(randomFactor);
-            else scoreSmall += Math.abs(randomFactor);
-            
-            return { scoreBig, scoreSmall, strategy: "Game Theory" };
-        }
-
-        // STRATEGY 5: TIME SERIES & FORECASTING
-        function timeSeriesStrategy(numbers) {
-            let scoreBig = 0;
-            let scoreSmall = 0;
-            
-            // 1. ARIMA inspired (AutoRegressive Integrated Moving Average)
-            const arCoefficients = calculateARCoefficients(numbers, 2);
-            const maCoefficients = calculateMACoefficients(numbers, 2);
-            
-            if (arCoefficients.length >= 2 && maCoefficients.length >= 2) {
-                const forecast = 
-                    arCoefficients[0] * numbers[0] +
-                    arCoefficients[1] * numbers[1] +
-                    maCoefficients[0] * (numbers[0] - numbers[1]) +
-                    maCoefficients[1] * (numbers[1] - numbers[2] || 0);
-                
-                if (forecast >= 5) scoreBig += 25;
-                else scoreSmall += 25;
-            }
-            
-            // 2. Exponential Smoothing
-            const alpha = 0.3; // Smoothing factor
-            let smoothed = numbers[0];
-            for (let i = 1; i < numbers.length; i++) {
-                smoothed = alpha * numbers[i] + (1 - alpha) * smoothed;
-            }
-            
-            if (smoothed >= 5) scoreBig += 20;
-            else scoreSmall += 20;
-            
-            // 3. Seasonal Decomposition
-            const seasonality = detectSeasonality(numbers);
-            if (seasonality.period > 0) {
-                const positionInCycle = numbers.length % seasonality.period;
-                const expected = seasonality.pattern[positionInCycle % seasonality.pattern.length];
-                if (expected >= 5) scoreBig += 15;
-                else scoreSmall += 15;
-            }
-            
-            // 4. Trend + Seasonality + Residual
-            const trend = calculateLinearTrend(numbers);
-            const cyclical = detectCyclicalPattern(numbers);
-            
-            const combinedForecast = trend.slope * numbers.length + trend.intercept + cyclical;
-            if (combinedForecast >= 5) scoreBig += 20;
-            else scoreSmall += 20;
-            
-            return { scoreBig, scoreSmall, strategy: "Time Series" };
-        }
-
-        // ============================
-        // HELPER FUNCTIONS FOR STRATEGIES
-        // ============================
-
-        function calculateRSI(numbers) {
-            if (numbers.length < 2) return 50;
-            
-            let gains = 0;
-            let losses = 0;
-            
-            for (let i = 1; i < numbers.length; i++) {
-                const change = numbers[i] - numbers[i-1];
-                if (change > 0) gains += change;
-                else losses += Math.abs(change);
-            }
-            
-            const avgGain = gains / (numbers.length - 1);
-            const avgLoss = losses / (numbers.length - 1);
-            
-            if (avgLoss === 0) return 100;
-            const rs = avgGain / avgLoss;
-            return 100 - (100 / (1 + rs));
-        }
-
-        function calculateMACD(numbers) {
-            if (numbers.length < 12) return { macd: 0, signal: 0 };
-            
-            const ema12 = calculateEMA(numbers, 12);
-            const ema26 = calculateEMA(numbers, 26);
-            const macd = ema12 - ema26;
-            const signal = calculateEMA(numbers.slice(-9).map((n, i) => macd), 9);
-            
-            return { macd, signal };
-        }
-
-        function calculateEMA(numbers, period) {
-            const alpha = 2 / (period + 1);
-            let ema = numbers[0];
-            
-            for (let i = 1; i < numbers.length; i++) {
-                ema = alpha * numbers[i] + (1 - alpha) * ema;
-            }
-            
-            return ema;
-        }
-
-        function calculateBollingerPosition(numbers, stats) {
-            const stdDev = Math.sqrt(stats.variance);
-            const upperBand = stats.avg + 2 * stdDev;
-            const lowerBand = stats.avg - 2 * stdDev;
-            const bandwidth = upperBand - lowerBand;
-            
-            if (bandwidth === 0) return 0.5;
-            return (numbers[0] - lowerBand) / bandwidth;
-        }
-
-        function hasNConsecutive(numbers, n) {
-            if (numbers.length < n) return false;
-            
-            for (let i = 0; i <= numbers.length - n; i++) {
-                let allSameType = true;
-                const firstType = numbers[i] >= 5;
-                
-                for (let j = 1; j < n; j++) {
-                    if ((numbers[i+j] >= 5) !== firstType) {
-                        allSameType = false;
-                        break;
-                    }
-                }
-                
-                if (allSameType) return true;
-            }
-            
-            return false;
-        }
-
-        function isAlternatingPattern(numbers) {
-            if (numbers.length < 3) return false;
-            
-            for (let i = 0; i < numbers.length - 2; i++) {
-                const type1 = numbers[i] >= 5;
-                const type2 = numbers[i+1] >= 5;
-                const type3 = numbers[i+2] >= 5;
-                
-                if (type1 === type3 && type1 !== type2) {
-                    return true;
-                }
-            }
-            
-            return false;
-        }
-
-        function isAscendingSequence(arr) {
-            for (let i = 1; i < arr.length; i++) {
-                if (arr[i] <= arr[i-1]) return false;
-            }
-            return true;
-        }
-
-        function isDescendingSequence(arr) {
-            for (let i = 1; i < arr.length; i++) {
-                if (arr[i] >= arr[i-1]) return false;
-            }
-            return true;
-        }
-
-        function getTimeOfDayWeight() {
-            const now = new Date();
-            const hour = now.getHours();
-            
-            // Different patterns at different times
-            if (hour >= 0 && hour < 6) return 0.7;  // Night - more random
-            if (hour >= 6 && hour < 12) return 0.9; // Morning - more predictable
-            if (hour >= 12 && hour < 18) return 0.8; // Afternoon
-            return 0.6; // Evening
-        }
-
-        function calculateVolatility(numbers) {
-            if (numbers.length < 2) return 0;
-            
-            let sumSqDiff = 0;
-            const mean = numbers.reduce((a, b) => a + b, 0) / numbers.length;
-            
-            for (const num of numbers) {
-                sumSqDiff += Math.pow(num - mean, 2);
-            }
-            
-            return Math.sqrt(sumSqDiff / numbers.length);
-        }
-
-        function calculateMomentum(numbers) {
-            if (numbers.length < 3) return 0;
-            
-            const recent = numbers.slice(0, 3);
-            const older = numbers.slice(3, 6);
-            
-            if (older.length === 0) return 0;
-            
-            const recentAvg = recent.reduce((a, b) => a + b, 0) / recent.length;
-            const olderAvg = older.reduce((a, b) => a + b, 0) / older.length;
-            
-            return recentAvg - olderAvg;
-        }
-
-        function calculateMeanReversionScore(numbers, mean) {
-            if (numbers.length === 0) return 0;
-            
-            const last = numbers[0];
-            const distance = Math.abs(last - mean);
-            const maxDistance = 4.5; // Max distance from mean (0-9 scale)
-            
-            // Normalize and invert (further from mean = stronger mean reversion signal)
-            const normalized = distance / maxDistance;
-            const direction = last > mean ? -1 : 1;
-            
-            return normalized * direction;
-        }
-
-        function getRecentPattern(numbers) {
-            if (numbers.length < 3) return { type: 'random', strength: 0 };
-            
-            let bigCount = 0;
-            let smallCount = 0;
-            
-            for (const num of numbers) {
-                if (num >= 5) bigCount++;
-                else smallCount++;
-            }
-            
-            const dominant = bigCount > smallCount ? 'big' : 'small';
-            const strength = Math.abs(bigCount - smallCount) / numbers.length;
-            
-            return { type: dominant, strength };
-        }
-
-        function findMostObviousPattern(numbers) {
-            const patterns = [];
-            
-            // Check for streaks
-            let currentStreak = 1;
-            let currentType = numbers[0] >= 5 ? 'big' : 'small';
-            
-            for (let i = 1; i < numbers.length; i++) {
-                const type = numbers[i] >= 5 ? 'big' : 'small';
-                if (type === currentType) {
-                    currentStreak++;
-                } else {
-                    patterns.push({ type: currentType, length: currentStreak });
-                    currentStreak = 1;
-                    currentType = type;
-                }
-            }
-            patterns.push({ type: currentType, length: currentStreak });
-            
-            // Find longest streak
-            const longestStreak = patterns.reduce((max, p) => p.length > max.length ? p : max, { length: 0 });
-            
-            if (longestStreak.length >= 3) {
-                return longestStreak.type;
-            }
-            
-            return null;
-        }
-
-        function predictFirstOrderThinking(numbers) {
-            // Simple trend following
-            if (numbers.length < 2) return 'random';
-            
-            const lastTwoAvg = (numbers[0] + numbers[1]) / 2;
-            return lastTwoAvg >= 5 ? 'big' : 'small';
-        }
-
-        function predictSecondOrderThinking(numbers, firstOrderPrediction) {
-            // Think one step ahead
-            if (firstOrderPrediction === 'big') return 'small';
-            else return 'big';
-        }
-
-        function calculateARCoefficients(numbers, order) {
-            // Simplified AR coefficient calculation
-            const coefficients = [];
-            
-            for (let i = 1; i <= order; i++) {
-                if (i < numbers.length) {
-                    coefficients.push(0.5 / Math.pow(2, i)); // Decaying weights
-                }
-            }
-            
-            return coefficients;
-        }
-
-        function calculateMACoefficients(numbers, order) {
-            // Simplified MA coefficient calculation
-            const coefficients = [];
-            
-            for (let i = 1; i <= order; i++) {
-                coefficients.push(0.3 / Math.pow(2, i));
-            }
-            
-            return coefficients;
-        }
-
-        function detectSeasonality(numbers) {
-            if (numbers.length < 6) return { period: 0, pattern: [] };
-            
-            // Try different periods
-            for (let period = 2; period <= 5; period++) {
-                let match = true;
-                for (let i = 0; i < numbers.length - period; i++) {
-                    const diff = Math.abs((numbers[i] >= 5 ? 1 : 0) - (numbers[i+period] >= 5 ? 1 : 0));
-                    if (diff > 0.3) {
-                        match = false;
-                        break;
-                    }
-                }
-                if (match) {
-                    return { 
-                        period, 
-                        pattern: numbers.slice(0, period).map(n => n >= 5 ? 1 : 0) 
-                    };
-                }
-            }
-            
-            return { period: 0, pattern: [] };
-        }
-
-        function calculateLinearTrend(numbers) {
-            const n = numbers.length;
-            let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
-            
-            for (let i = 0; i < n; i++) {
-                sumX += i;
-                sumY += numbers[i];
-                sumXY += i * numbers[i];
-                sumX2 += i * i;
-            }
-            
-            const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
-            const intercept = (sumY - slope * sumX) / n;
-            
-            return { slope, intercept };
-        }
-
-        function detectCyclicalPattern(numbers) {
-            if (numbers.length < 4) return 0;
-            
-            // Simple cyclical detection
-            const changes = [];
-            for (let i = 1; i < numbers.length; i++) {
-                changes.push(numbers[i] - numbers[i-1]);
-            }
-            
-            // Count sign changes
-            let signChanges = 0;
-            for (let i = 1; i < changes.length; i++) {
-                if (changes[i] * changes[i-1] < 0) {
-                    signChanges++;
-                }
-            }
-            
-            const cyclicity = signChanges / (changes.length - 1);
-            return cyclicity > 0.5 ? 0.3 : -0.3;
-        }
-
-        // ============================
-        // MAIN PREDICTION ENGINE
-        // ============================
-
-        function generateAdvancedPrediction(stats, numbers) {
-            if (!stats || numbers.length < 3) {
-                // Fallback strategies when data is limited
-                const strategies = [];
-                
-                // Strategy 1: Last 3 majority
-                const lastThree = numbers.slice(0, 3);
-                const bigCount = lastThree.filter(n => n >= 5).length;
-                const smallCount = lastThree.filter(n => n < 5).length;
-                
-                if (bigCount >= 2) return 'SMALL';
-                if (smallCount >= 2) return 'BIG';
-                
-                // Strategy 2: Last number reversal
-                const lastNumber = numbers[0];
-                return lastNumber >= 5 ? 'SMALL' : 'BIG';
-            }
-            
-            // Run all strategies
-            const strategies = [
-                patternRecognitionStrategy(numbers),
-                statisticalAnalysisStrategy(numbers, stats),
-                machineLearningStrategy(numbers, stats),
-                gameTheoryStrategy(numbers),
-                timeSeriesStrategy(numbers)
-            ];
-            
-            // Weight each strategy
-            const strategyWeights = [0.25, 0.20, 0.25, 0.15, 0.15];
-            
-            let totalScoreBig = 0;
-            let totalScoreSmall = 0;
-            
-            strategies.forEach((strategy, index) => {
-                const weight = strategyWeights[index];
-                totalScoreBig += strategy.scoreBig * weight;
-                totalScoreSmall += strategy.scoreSmall * weight;
-                console.log(`${strategy.strategy}: BIG ${strategy.scoreBig}, SMALL ${strategy.scoreSmall}`);
+                    // Update buttons
+                    container.querySelectorAll('.tab-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
+                    
+                    // Update content
+                    container.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    container.querySelector(`#${tabId}`).classList.add('active');
+                });
             });
-            
-            // Apply meta-strategy: check consistency
-            const allAgreeBig = strategies.every(s => s.scoreBig > s.scoreSmall);
-            const allAgreeSmall = strategies.every(s => s.scoreSmall > s.scoreBig);
-            
-            if (allAgreeBig) {
-                console.log("ALL STRATEGIES AGREE: BIG");
-                return 'BIG';
-            }
-            if (allAgreeSmall) {
-                console.log("ALL STRATEGIES AGREE: SMALL");
-                return 'SMALL';
-            }
-            
-            // Add dynamic adjustment based on recent accuracy
-            const recentAccuracy = calculateRecentAccuracy();
-            if (recentAccuracy > 0.6) {
-                // If recent predictions were good, trust the majority more
-                const confidenceBoost = (recentAccuracy - 0.5) * 20;
-                if (totalScoreBig > totalScoreSmall) {
-                    totalScoreBig += confidenceBoost;
-                } else {
-                    totalScoreSmall += confidenceBoost;
-                }
-            }
-            
-            // Determine final prediction
-            const prediction = totalScoreBig > totalScoreSmall ? 'BIG' : 'SMALL';
-            const margin = Math.abs(totalScoreBig - totalScoreSmall);
-            
-            console.log(`FINAL: ${prediction} (Margin: ${margin.toFixed(1)})`);
-            console.log(`TOTAL SCORES - BIG: ${totalScoreBig.toFixed(1)}, SMALL: ${totalScoreSmall.toFixed(1)}`);
-            
-            return prediction;
         }
 
-        function calculateRecentAccuracy() {
-            if (state.predictions.length < 3) return 0.5;
+        // Mode Management
+        function switchMode(mode) {
+            state.currentMode = mode;
             
-            let correct = 0;
-            let total = 0;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.mode-btn[data-mode="${mode}"]`).classList.add('active');
             
-            for (const pred of state.predictions.slice(0, 5)) {
-                if (pred.verified) {
-                    total++;
-                    if (pred.result === 'WIN') correct++;
-                }
+            document.body.classList.remove('mode-normal', 'mode-sniper');
+            document.body.classList.add(`mode-${mode}`);
+            
+            if (state.gameHistory.length > 0) {
+                makePrediction();
+            }
+        }
+
+        // Prediction Logic
+        function generateNormalPrediction(numbers) {
+            if (!numbers || numbers.length < 3) {
+                return { prediction: 'BIG', confidence: 50 };
             }
             
-            return total > 0 ? correct / total : 0.5;
+            let scoreBig = 0;
+            let scoreSmall = 0;
+            
+            const lastThree = numbers.slice(0, 3);
+            const bigCount = lastThree.filter(n => n >= 5).length;
+            const smallCount = lastThree.filter(n => n < 5).length;
+            
+            if (bigCount >= 2) scoreSmall += 30;
+            else if (smallCount >= 2) scoreBig += 30;
+            
+            const avg = numbers.reduce((a, b) => a + b, 0) / numbers.length;
+            if (avg > 5.5) scoreSmall += 15;
+            else if (avg < 4.5) scoreBig += 15;
+            
+            const prediction = scoreBig > scoreSmall ? 'BIG' : 'SMALL';
+            const confidence = Math.min(85, Math.max(55, 50 + Math.abs(scoreBig - scoreSmall)));
+            
+            return { prediction, confidence: Math.round(confidence) };
         }
 
-        function calculatePredictionConfidence(stats, numbers) {
-            if (!stats || numbers.length < 3) return 55;
-            
-            let confidence = 60;
-            
-            // Base confidence on multiple factors
-            const factors = [];
-            
-            // 1. Data quality
-            if (numbers.length >= 8) confidence += 10;
-            else if (numbers.length >= 5) confidence += 5;
-            
-            // 2. Pattern clarity
-            const patternStrength = evaluatePatternStrength(numbers);
-            confidence += patternStrength * 15;
-            
-            // 3. Statistical significance
-            const statisticalStrength = evaluateStatisticalSignificance(stats);
-            confidence += statisticalStrength * 10;
-            
-            // 4. Strategy agreement
-            const agreementScore = evaluateStrategyAgreement(numbers, stats);
-            confidence += agreementScore * 10;
-            
-            // 5. Recent performance
-            const recentAccuracy = calculateRecentAccuracy();
-            confidence += (recentAccuracy - 0.5) * 20;
-            
-            // Cap confidence
-            confidence = Math.max(55, Math.min(90, confidence));
-            
-            return Math.round(confidence);
-        }
-
-        function evaluatePatternStrength(numbers) {
-            if (numbers.length < 4) return 0;
-            
-            let patternScore = 0;
-            
-            // Check for clear trends
-            let ascending = true;
-            let descending = true;
-            
-            for (let i = 1; i < Math.min(4, numbers.length); i++) {
-                if (numbers[i] <= numbers[i-1]) ascending = false;
-                if (numbers[i] >= numbers[i-1]) descending = false;
+        function generateSniperPrediction(numbers) {
+            if (!numbers || numbers.length < 3) {
+                return { 
+                    prediction: 'SKIP', 
+                    confidence: 0, 
+                    decision: 'SKIP',
+                    reason: 'Insufficient data'
+                };
             }
             
-            if (ascending || descending) patternScore += 0.6;
+            const avg = numbers.reduce((a, b) => a + b, 0) / numbers.length;
+            const lastType = numbers[0] >= 5 ? 'BIG' : 'SMALL';
+            let streak = 1;
             
-            // Check for alternating pattern
-            if (isAlternatingPattern(numbers.slice(0, 4))) patternScore += 0.4;
-            
-            // Check for streaks
-            if (hasNConsecutive(numbers, 3)) patternScore += 0.5;
-            
-            return Math.min(1, patternScore);
-        }
-
-        function evaluateStatisticalSignificance(stats) {
-            let significance = 0;
-            
-            // Low variance = more predictable
-            if (stats.variance < 2) significance += 0.4;
-            else if (stats.variance < 4) significance += 0.2;
-            
-            // Clear majority trend
-            const bigRatio = stats.bigCount / (stats.bigCount + stats.smallCount);
-            if (bigRatio > 0.7 || bigRatio < 0.3) significance += 0.3;
-            else if (bigRatio > 0.6 || bigRatio < 0.4) significance += 0.2;
-            
-            // Strong trend
-            if (Math.abs(stats.trend) > 1) significance += 0.3;
-            
-            return Math.min(1, significance);
-        }
-
-        function evaluateStrategyAgreement(numbers, stats) {
-            // Run quick versions of strategies to check agreement
-            const quickStrategies = [
-                patternRecognitionStrategy(numbers),
-                statisticalAnalysisStrategy(numbers, stats),
-                gameTheoryStrategy(numbers)
-            ];
-            
-            let bigWins = 0;
-            let smallWins = 0;
-            
-            for (const strategy of quickStrategies) {
-                if (strategy.scoreBig > strategy.scoreSmall) bigWins++;
-                else if (strategy.scoreSmall > strategy.scoreBig) smallWins++;
+            for (let i = 1; i < numbers.length; i++) {
+                if ((numbers[i] >= 5 ? 'BIG' : 'SMALL') === lastType) streak++;
+                else break;
             }
             
-            const maxWins = Math.max(bigWins, smallWins);
-            return maxWins / quickStrategies.length;
+            let confidence = 50;
+            if (streak >= 3) confidence += 25;
+            if (avg > 6 || avg < 4) confidence += 20;
+            confidence = Math.min(95, Math.max(50, confidence));
+            
+            let prediction = avg > 5 ? 'SMALL' : 'BIG';
+            if (streak >= 3) {
+                prediction = lastType === 'BIG' ? 'SMALL' : 'BIG';
+            }
+            
+            if (confidence >= state.sniperThreshold) {
+                return {
+                    prediction: prediction,
+                    confidence: confidence,
+                    decision: 'FIRE',
+                    reason: `High confidence (${confidence}%)`
+                };
+            } else {
+                return {
+                    prediction: prediction,
+                    confidence: confidence,
+                    decision: 'SKIP',
+                    reason: `Low confidence (${confidence}%)`
+                };
+            }
         }
 
-        // Main prediction function
+        // Core Functions
         function makePrediction() {
             if (state.gameHistory.length === 0) {
                 elements.aiPrediction.textContent = '--';
-                elements.predictionDetails.innerHTML = '<span style="color: var(--warning)">Waiting for data...</span>';
-                return null;
+                elements.predictionDetails.textContent = 'Waiting for data...';
+                return;
             }
 
-            // Use latest 10 results for analysis
-            const recentGames = state.gameHistory.slice(0, 10);
-            
-            // Extract numbers from recent games
-            const recentNumbers = recentGames.map(game => parseInt(game.number));
-            
-            // Calculate various statistics
-            const stats = analyzeNumbers(recentNumbers);
-            
-            // Generate prediction using multi-strategy AI
-            const prediction = generateAdvancedPrediction(stats, recentNumbers);
-            const confidence = calculatePredictionConfidence(stats, recentNumbers);
-            
-            // Create prediction record
+            const recentNumbers = state.gameHistory.slice(0, 10).map(game => parseInt(game.number));
             const latestGame = state.gameHistory[0];
-            const predictionRecord = {
-                period: calculateNextPeriod(latestGame.issueNumber),
-                prediction: prediction,
-                confidence: confidence,
-                timestamp: new Date().toISOString(),
-                verified: false,
-                actual: null,
-                result: null
-            };
-            
-            // Set as pending prediction
-            state.pendingPrediction = predictionRecord;
-            
-            // Add to predictions (limit to 10)
-            state.predictions.unshift(predictionRecord);
-            if (state.predictions.length > 10) {
-                state.predictions.pop();
+            let predictionResult;
+
+            if (state.currentMode === 'normal') {
+                predictionResult = generateNormalPrediction(recentNumbers);
+                
+                const predictionRecord = {
+                    period: calculateNextPeriod(latestGame.issueNumber),
+                    prediction: predictionResult.prediction,
+                    confidence: predictionResult.confidence,
+                    verified: false
+                };
+                
+                state.pendingPrediction = predictionRecord;
+                state.normalPredictions.unshift(predictionRecord);
+                if (state.normalPredictions.length > 10) state.normalPredictions.pop();
+                
+            } else {
+                predictionResult = generateSniperPrediction(recentNumbers);
+                
+                const logEntry = {
+                    period: calculateNextPeriod(latestGame.issueNumber),
+                    signal: predictionResult.prediction,
+                    confidence: predictionResult.confidence,
+                    decision: predictionResult.decision,
+                    reason: predictionResult.reason
+                };
+                
+                state.sniperLogs.unshift(logEntry);
+                if (state.sniperLogs.length > 20) state.sniperLogs.pop();
+                
+                if (predictionResult.decision === 'SKIP') {
+                    state.sniperStats.skips++;
+                } else {
+                    state.sniperStats.totalPredictions++;
+                    
+                    const predictionRecord = {
+                        period: calculateNextPeriod(latestGame.issueNumber),
+                        prediction: predictionResult.prediction,
+                        confidence: predictionResult.confidence,
+                        decision: predictionResult.decision,
+                        verified: false
+                    };
+                    
+                    state.pendingPrediction = predictionRecord;
+                    state.sniperPredictions.unshift(predictionRecord);
+                    if (state.sniperPredictions.length > 10) state.sniperPredictions.pop();
+                }
             }
             
-            // Update display
-            elements.aiPrediction.textContent = prediction;
-            elements.aiPrediction.className = `prediction-main ${prediction.toLowerCase()}`;
-            
-            const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            elements.predictionDetails.innerHTML = `
-                <i class="fas fa-brain"></i> Confidence: ${confidence}% • Updated: ${timeStr}<br>
-                <small style="font-size: 0.8rem;">Multi-strategy AI analyzing ${recentNumbers.length} patterns</small>
-            `;
-            
-            updatePredictionsTable();
-            
-            console.log(`🎯 ULTIMATE AI PREDICTION: ${prediction} (${confidence}%)`);
-            console.log('📊 Statistics:', stats);
-            
-            return predictionRecord;
+            updatePredictionDisplay(predictionResult);
+            updateTables();
         }
 
-        // ============================
-        // BASIC ANALYSIS FUNCTIONS (Keep from original)
-        // ============================
-
-        function analyzeNumbers(numbers) {
-            if (numbers.length < 3) return null;
+        function updatePredictionDisplay(predictionResult) {
+            elements.aiPrediction.textContent = predictionResult.prediction;
             
-            const stats = {
-                avg: 0,
-                median: 0,
-                mode: null,
-                bigCount: 0,
-                smallCount: 0,
-                variance: 0,
-                trend: 0,
-                consecutivePattern: '',
-                hotNumbers: [],
-                coldNumbers: [],
-                streaks: {
-                    current: 0,
-                    longest: 0
-                }
-            };
-            
-            // Calculate average
-            stats.avg = numbers.reduce((a, b) => a + b, 0) / numbers.length;
-            
-            // Count big/small
-            stats.bigCount = numbers.filter(n => n >= 5).length;
-            stats.smallCount = numbers.filter(n => n < 5).length;
-            
-            // Calculate median
-            const sorted = [...numbers].sort((a, b) => a - b);
-            const mid = Math.floor(sorted.length / 2);
-            stats.median = sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
-            
-            // Calculate variance
-            const avg = stats.avg;
-            stats.variance = numbers.reduce((a, b) => a + Math.pow(b - avg, 2), 0) / numbers.length;
-            
-            // Determine trend (up/down)
-            let trendSum = 0;
-            for (let i = 1; i < numbers.length; i++) {
-                trendSum += numbers[i] - numbers[i - 1];
+            if (state.currentMode === 'sniper' && predictionResult.decision === 'SKIP') {
+                elements.aiPrediction.className = 'prediction-value skip';
+                elements.predictionDetails.innerHTML = `
+                    <i class="fas fa-crosshairs"></i> Skipping (${predictionResult.confidence}%)<br>
+                    <small>Threshold: ${state.sniperThreshold}%</small>
+                `;
+            } else {
+                elements.aiPrediction.className = predictionResult.prediction === 'BIG' ? 
+                    'prediction-value big' : 'prediction-value small';
+                
+                const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                elements.predictionDetails.innerHTML = `
+                    Confidence: ${predictionResult.confidence}% â¢ Updated: ${timeStr}<br>
+                    <small>Based on ${state.gameHistory.length} results</small>
+                `;
             }
-            stats.trend = trendSum / (numbers.length - 1);
+        }
+
+        function updateStatsDisplay() {
+            // Normal Mode Stats
+            const normalTotal = state.normalStats.wins + state.normalStats.losses;
+            const normalWinRate = normalTotal > 0 ? 
+                Math.round((state.normalStats.wins / normalTotal) * 100) : 0;
             
-            // Find mode (most frequent number)
-            const frequency = {};
-            let maxFreq = 0;
-            numbers.forEach(num => {
-                frequency[num] = (frequency[num] || 0) + 1;
-                if (frequency[num] > maxFreq) {
-                    maxFreq = frequency[num];
-                    stats.mode = num;
+            elements.normalWins.textContent = state.normalStats.wins;
+            elements.normalLosses.textContent = state.normalStats.losses;
+            elements.normalWinRate.textContent = `${normalWinRate}%`;
+            elements.normalStreak.textContent = Math.abs(state.normalStats.currentStreak);
+            
+            // Color streak
+            elements.normalStreak.style.color = state.normalStats.currentStreak > 0 ? 
+                'var(--success)' : state.normalStats.currentStreak < 0 ? 'var(--danger)' : 'var(--text-primary)';
+            
+            // Sniper Mode Stats
+            const sniperTotal = state.sniperStats.wins + state.sniperStats.losses;
+            const sniperAccuracy = sniperTotal > 0 ? 
+                Math.round((state.sniperStats.wins / sniperTotal) * 100) : 0;
+            
+            elements.sniperWins.textContent = state.sniperStats.wins;
+            elements.sniperLosses.textContent = state.sniperStats.losses;
+            elements.sniperAccuracy.textContent = `${sniperAccuracy}%`;
+            elements.sniperSkips.textContent = state.sniperStats.skips;
+        }
+
+        function updateTables() {
+            updateLiveResultsTable();
+            updateNormalPredictionsTable();
+            updateSniperPredictionsTable();
+            updateSniperLogTable();
+            updateStatsDisplay();
+        }
+
+        function updateLiveResultsTable() {
+            if (state.gameHistory.length === 0) return;
+            
+            let html = '';
+            
+            state.gameHistory.forEach(game => {
+                const number = parseInt(game.number);
+                const isBig = number >= 5;
+                const result = isBig ? 'BIG' : 'SMALL';
+                const time = new Date(game.time || Date.now()).toLocaleTimeString([], {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                html += `
+                    <tr>
+                        <td>${game.issueNumber}</td>
+                        <td>
+                            <div class="number-cell">
+                                <div class="number-circle ${isBig ? 'number-big' : 'number-small'}">
+                                    ${number}
+                                </div>
+                            </div>
+                        </td>
+                        <td><div class="badge ${isBig ? 'badge-success' : 'badge-danger'}">${result}</div></td>
+                        <td>${time}</td>
+                    </tr>
+                `;
+            });
+            
+            elements.liveResultsBody.innerHTML = html;
+            elements.liveResultsBodySniper.innerHTML = html;
+        }
+
+        function updateNormalPredictionsTable() {
+            if (state.normalPredictions.length === 0) return;
+            
+            let html = '';
+            
+            state.normalPredictions.forEach(pred => {
+                const predictionClass = pred.prediction === 'BIG' ? 'badge-success' : 'badge-danger';
+                
+                if (pred.verified) {
+                    const actualClass = pred.actual === 'BIG' ? 'badge-success' : 'badge-danger';
+                    const resultClass = pred.result === 'WIN' ? 'badge-success' : 'badge-danger';
+                    
+                    html += `
+                        <tr>
+                            <td>${pred.period || '--'}</td>
+                            <td><div class="badge ${predictionClass}">${pred.prediction}</div></td>
+                            <td><div class="badge ${actualClass}">${pred.actual}</div></td>
+                            <td><div class="badge ${resultClass}">${pred.result}</div></td>
+                            <td>${pred.confidence}%</td>
+                        </tr>
+                    `;
+                } else {
+                    html += `
+                        <tr>
+                            <td>${pred.period || '--'}</td>
+                            <td><div class="badge ${predictionClass}">${pred.prediction}</div></td>
+                            <td><div class="badge badge-warning">WAIT</div></td>
+                            <td><div class="badge badge-warning">PEND</div></td>
+                            <td>${pred.confidence}%</td>
+                        </tr>
+                    `;
                 }
             });
             
-            // Find hot numbers (appeared recently)
-            stats.hotNumbers = [...new Set(numbers.slice(0, 3))];
-            
-            // Find cold numbers (numbers that haven't appeared in last 5 rounds)
-            const allNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-            const recentNumbers = new Set(numbers.slice(0, 5));
-            stats.coldNumbers = allNumbers.filter(n => !recentNumbers.has(n));
-            
-            // Check for consecutive patterns
-            stats.consecutivePattern = detectPattern(numbers);
-            
-            // Calculate streaks
-            stats.streaks = calculateStreaks(numbers);
-            
-            return stats;
+            elements.normalPredictionsBody.innerHTML = html;
         }
 
-        function detectPattern(numbers) {
-            if (numbers.length < 3) return 'random';
+        function updateSniperPredictionsTable() {
+            if (state.sniperPredictions.length === 0) return;
             
-            const lastThree = numbers.slice(0, 3);
+            let html = '';
             
-            // Check for ascending pattern
-            if (lastThree[0] < lastThree[1] && lastThree[1] < lastThree[2]) {
-                return 'ascending';
-            }
-            
-            // Check for descending pattern
-            if (lastThree[0] > lastThree[1] && lastThree[1] > lastThree[2]) {
-                return 'descending';
-            }
-            
-            // Check for alternating pattern
-            if (lastThree[0] >= 5 && lastThree[1] < 5 && lastThree[2] >= 5) {
-                return 'alternating';
-            }
-            
-            if (lastThree[0] < 5 && lastThree[1] >= 5 && lastThree[2] < 5) {
-                return 'alternating';
-            }
-            
-            // Check for repeating pattern
-            if (lastThree[0] === lastThree[1] || lastThree[1] === lastThree[2]) {
-                return 'repeating';
-            }
-            
-            return 'random';
-        }
-
-        function calculateStreaks(numbers) {
-            let currentStreak = 1;
-            let currentType = numbers[0] >= 5 ? 'big' : 'small';
-            let longestStreak = 1;
-            
-            for (let i = 1; i < numbers.length; i++) {
-                const currentNumType = numbers[i] >= 5 ? 'big' : 'small';
+            state.sniperPredictions.forEach(pred => {
+                const predictionClass = pred.prediction === 'BIG' ? 'badge-success' : 'badge-danger';
+                const decisionClass = pred.decision === 'FIRE' ? 'badge-success' : 'badge-warning';
                 
-                if (currentNumType === currentType) {
-                    currentStreak++;
-                    if (currentStreak > longestStreak) {
-                        longestStreak = currentStreak;
-                    }
+                if (pred.verified) {
+                    const actualClass = pred.actual === 'BIG' ? 'badge-success' : 'badge-danger';
+                    const resultClass = pred.result === 'WIN' ? 'badge-success' : 'badge-danger';
+                    
+                    html += `
+                        <tr>
+                            <td>${pred.period || '--'}</td>
+                            <td><div class="badge ${predictionClass}">${pred.prediction}</div></td>
+                            <td>${pred.confidence}%</td>
+                            <td><div class="badge ${actualClass}">${pred.actual}</div></td>
+                            <td><div class="badge ${resultClass}">${pred.result}</div></td>
+                            <td><div class="badge ${decisionClass}">${pred.decision}</div></td>
+                        </tr>
+                    `;
                 } else {
-                    currentStreak = 1;
-                    currentType = currentNumType;
+                    html += `
+                        <tr>
+                            <td>${pred.period || '--'}</td>
+                            <td><div class="badge ${predictionClass}">${pred.prediction}</div></td>
+                            <td>${pred.confidence}%</td>
+                            <td><div class="badge badge-warning">WAIT</div></td>
+                            <td><div class="badge badge-warning">PEND</div></td>
+                            <td><div class="badge ${decisionClass}">${pred.decision}</div></td>
+                        </tr>
+                    `;
                 }
-            }
+            });
             
-            return {
-                current: currentStreak,
-                longest: longestStreak,
-                type: currentType
-            };
+            elements.sniperPredictionsBody.innerHTML = html;
         }
 
-        // ============================
-        // REST OF THE ORIGINAL FUNCTIONS (Unchanged)
-        // ============================
-        // [All the remaining functions from the original code stay exactly the same]
-        // Timer functions, API functions, table updates, etc.
+        function updateSniperLogTable() {
+            if (state.sniperLogs.length === 0) return;
+            
+            let html = '';
+            
+            state.sniperLogs.forEach(log => {
+                const decisionClass = log.decision === 'FIRE' ? 'badge-success' : 'badge-warning';
+                const signalClass = log.signal === 'BIG' ? 'badge-success' : 'badge-danger';
+                
+                html += `
+                    <tr>
+                        <td>${log.period}</td>
+                        <td><div class="badge ${signalClass}">${log.signal}</div></td>
+                        <td>${log.confidence}%</td>
+                        <td><div class="badge ${decisionClass}">${log.decision}</div></td>
+                        <td>${log.reason}</td>
+                    </tr>
+                `;
+            });
+            
+            elements.sniperLogBody.innerHTML = html;
+        }
+
+        function calculateNextPeriod(currentPeriod) {
+            try {
+                const periodStr = currentPeriod.toString();
+                const prefix = periodStr.slice(0, -5);
+                const number = parseInt(periodStr.slice(-5));
+                return prefix + (number + 1).toString().padStart(5, '0');
+            } catch (e) {
+                return '00000000000';
+            }
+        }
 
         function startTimer() {
-            if (state.timerInterval) {
-                clearInterval(state.timerInterval);
-            }
+            if (state.timerInterval) clearInterval(state.timerInterval);
             
             updateTimer();
             updatePeriod();
@@ -2087,10 +1412,7 @@
                 updatePeriod();
                 
                 const now = new Date();
-                const seconds = now.getUTCSeconds();
-                if (seconds === 0) {
-                    onMinuteComplete();
-                }
+                if (now.getUTCSeconds() === 0) onMinuteComplete();
             }, 1000);
         }
 
@@ -2101,161 +1423,79 @@
             
             elements.countdownTimer.textContent = `00:${String(remaining).padStart(2, '0')}`;
             
-            const progressPercent = (remaining / 60) * 100;
-            elements.countdownProgress.style.width = `${progressPercent}%`;
-            
-            if (remaining <= 10) {
-                elements.countdownProgress.style.background = 'linear-gradient(135deg, #ef4444, #f87171)';
-            } else if (remaining <= 30) {
-                elements.countdownProgress.style.background = 'linear-gradient(135deg, #f59e0b, #fbbf24)';
-            } else {
-                elements.countdownProgress.style.background = 'var(--gradient-primary)';
-            }
-            
-            return remaining;
+            const progress = (remaining / 60) * 100;
+            document.getElementById('countdownProgress').style.width = `${progress}%`;
         }
 
         function updatePeriod() {
             const now = new Date();
-            
             const y = now.getUTCFullYear();
             const m = String(now.getUTCMonth() + 1).padStart(2, '0');
             const d = String(now.getUTCDate()).padStart(2, '0');
-            
             const hours = now.getUTCHours();
             const minutes = now.getUTCMinutes();
             const totalMinutes = hours * 60 + minutes;
             
             const periodNum = `${y}${m}${d}1000${10001 + totalMinutes}`;
-            
             elements.currentPeriod.textContent = periodNum;
-            
-            return periodNum;
         }
 
         function onMinuteComplete() {
-            console.log('⏰ Minute completed - Processing...');
-            
-            updateStatus('loading', 'Updating prediction...');
-            
-            fetchAPIData().then(apiSuccess => {
-                if (apiSuccess && state.gameHistory.length > 0) {
+            updateStatus('loading', 'Updating...');
+            fetchAPIData().then(() => {
+                if (state.gameHistory.length > 0) {
                     verifyPreviousPrediction();
-                    
                     setTimeout(() => {
                         makePrediction();
-                        updateStatus('connected', 'Connected to Lottery API');
+                        updateStatus('connected', 'System Active');
                     }, 1000);
                 }
             });
         }
 
-        function initApp() {
-            console.log('🚀 Initializing Advanced Lottery AI Predictor...');
-            
-            initializeTabs();
-            startTimer();
-            
-            fetchAPIData();
-            
-            setTimeout(() => {
-                if (state.gameHistory.length > 0) {
-                    makePrediction();
-                }
-            }, 1500);
-            
-            console.log('✅ System initialized with Multi-Strategy AI');
-            
-            window.addEventListener('resize', handleResize);
-            handleResize();
-        }
-
-        function handleResize() {
-            const isMobile = window.innerWidth < 768;
-            const tables = document.querySelectorAll('.data-table');
-            
-            tables.forEach(table => {
-                if (isMobile) {
-                    table.style.minWidth = '100%';
-                } else {
-                    table.style.minWidth = '600px';
-                }
-            });
-        }
-
-        function initializeTabs() {
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.dataset.tab;
-                    
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    
-                    document.querySelectorAll('.tab-content').forEach(content => {
-                        content.classList.remove('active');
-                    });
-                    document.getElementById(`${tabId}Tab`).classList.add('active');
-                });
-            });
-        }
-
         async function fetchAPIData() {
-            updateStatus('loading', 'Fetching API data...');
+            updateStatus('loading', 'Fetching data...');
             
             try {
                 const requestBody = {
-                    ...API_CONFIG.body,
+                    pageSize: 10,
+                    pageNo: 1,
+                    typeId: 1,
+                    language: 0,
+                    random: 'da8913dfe5994aeab157b34bc3118e1d',
+                    signature: 'E8FF7E38380D58E6303547940A069C02',
                     timestamp: Math.floor(Date.now() / 1000)
                 };
 
-                console.log('📡 Fetching API data...');
-                
-                const response = await fetch(API_CONFIG.url, {
-                    method: API_CONFIG.method,
-                    headers: API_CONFIG.headers,
+                const response = await fetch('https://api.bigwinqaz.com/api/webapi/GetNoaverageEmerdList', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=UTF-8',
+                        'Accept': 'application/json, text/plain, */*',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOiIxNzY2NjM0MDEyIiwibmJmIjoiMTc2NjYzNDAxIiwiZXhwIjoiMTc2NjYzNTgxMiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjEyLzI1LzIwMjUgMTA6NDA6MTIgQU0iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBY2Nlc3NfVGFrZW4iLCJVc2VySWQiOiIxMTMyNTIiLCJVc2VyTmFtZSI6Ijk1OTQyMjQ5MTAyMCIsIlVzZXJQaG90byI6IjEiLCJOaWNrTmFtZSI6Ik1lbWJlck5OR1paREI0IiwiQW1vdW50IjoiNjAuMDAiLCJJbnRlZ3JhbCI6IjAiLCJMb2dpbk1hcmsiOiJINSIsIkxvZ2luVGltZSI6IjEyLzI1LzIwMjUgMTA6MTA6MTIgQU0iLCJMb2dpbklQQWRkcmVzcyI6IjEwMy4xNzIuMTgxLjQiLCJEYk51bWJlciI6IjAiLCJJc3ZhbGlkYXRvciI6IjAiLCJLZXlDb2RlIjoiMTciLCJUb2tlblR5cGUiOiJBY2Nlc3NfVG9rZW4iLCJQaG9uZVR5cGUiOiIxIiwiVXNlclR5cGUiOiIwIiwiVXNlck5hbWUiOiIiLCJpc3MiOiJqd3RJc3N1ZXIiLCJhdWQiOiJsb3R0ZXJ5VGlja2V0In0.q3F-b66aTgUSyQO0GWFRSo3pA613Dx5irOp8S5CVx-o',
+                        'Ar-Origin': 'https://www.777bigwingame.app'
+                    },
                     body: JSON.stringify(requestBody)
                 });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error: ${response.status}`);
-                }
 
                 const data = await response.json();
                 
                 if (data && data.code === 0 && data.data && data.data.list) {
-                    console.log('✅ API data received successfully');
-                    processGameData(data.data.list);
-                    state.retryCount = 0;
+                    state.gameHistory = data.data.list.sort((a, b) => {
+                        return parseInt(b.issueNumber) - parseInt(a.issueNumber);
+                    }).slice(0, 10);
+                    
+                    updateTables();
+                    updateStatus('connected', 'System Active');
                     return true;
-                } else {
-                    throw new Error(`API error: ${data?.msg || 'Invalid response format'}`);
                 }
                 
             } catch (error) {
-                console.error('❌ API Error:', error);
-                
+                console.error('API Error:', error);
                 useFallbackData();
-                return false;
             }
-        }
-
-        function processGameData(games) {
-            if (!games || !Array.isArray(games) || games.length === 0) {
-                console.warn('No game data available');
-                useFallbackData();
-                return;
-            }
-
-            state.gameHistory = games.sort((a, b) => {
-                return parseInt(b.issueNumber) - parseInt(a.issueNumber);
-            }).slice(0, 10);
             
-            updateLiveResultsTable();
-            updateStatus('connected', 'Connected to Lottery API');
-            
-            console.log(`📊 Processed ${state.gameHistory.length} games`);
+            return false;
         }
 
         function useFallbackData() {
@@ -2275,9 +1515,8 @@
             }
             
             state.gameHistory = fallbackGames;
-            updateLiveResultsTable();
-            
-            updateStatus('connected', 'Using cached data - API offline');
+            updateTables();
+            updateStatus('connected', 'Using cached data');
         }
 
         function calculateFallbackPeriod(date, offset) {
@@ -2291,26 +1530,8 @@
             return `${y}${m}${d}1000${10001 + totalMinutes}`;
         }
 
-        function calculateNextPeriod(currentPeriod) {
-            try {
-                const periodStr = currentPeriod.toString();
-                if (periodStr.length < 5) return '00000000000';
-                
-                const prefix = periodStr.slice(0, -5);
-                const number = parseInt(periodStr.slice(-5));
-                if (isNaN(number)) return '00000000000';
-                
-                return prefix + (number + 1).toString().padStart(5, '0');
-            } catch (e) {
-                console.error('Error calculating next period:', e);
-                return '00000000000';
-            }
-        }
-
         function verifyPreviousPrediction() {
-            if (!state.pendingPrediction) return;
-            if (state.pendingPrediction.verified) return;
-            
+            if (!state.pendingPrediction || state.pendingPrediction.verified) return;
             if (state.gameHistory.length === 0) return;
             
             const latestGame = state.gameHistory[0];
@@ -2321,198 +1542,25 @@
             state.pendingPrediction.verified = true;
             state.pendingPrediction.actual = actualResult;
             state.pendingPrediction.result = isWin ? 'WIN' : 'LOSE';
-            state.pendingPrediction.actualNumber = actualNumber;
-            state.pendingPrediction.verifiedAt = new Date().toISOString();
             
-            updateStatistics(isWin);
-            
-            updatePredictionResultDisplay(isWin, actualResult);
-            updatePredictionsTable();
-            
-            console.log(`✅ Verified: ${state.pendingPrediction.prediction} vs ${actualResult} = ${isWin ? 'WIN' : 'LOSE'}`);
-        }
-
-        function updateStatistics(isWin) {
-            if (isWin) {
-                state.stats.wins++;
-                state.stats.currentStreak = Math.max(0, state.stats.currentStreak) + 1;
-                state.stats.winStreak = Math.max(state.stats.winStreak, state.stats.currentStreak);
-                state.stats.bestStreak = Math.max(state.stats.bestStreak, state.stats.currentStreak);
-            } else {
-                state.stats.losses++;
-                state.stats.currentStreak = Math.min(0, state.stats.currentStreak) - 1;
+            if (state.currentMode === 'normal') {
+                if (isWin) {
+                    state.normalStats.wins++;
+                    state.normalStats.currentStreak = Math.max(0, state.normalStats.currentStreak) + 1;
+                } else {
+                    state.normalStats.losses++;
+                    state.normalStats.currentStreak = Math.min(0, state.normalStats.currentStreak) - 1;
+                }
+            } else if (state.pendingPrediction.decision === 'FIRE') {
+                if (isWin) {
+                    state.sniperStats.wins++;
+                } else {
+                    state.sniperStats.losses++;
+                }
             }
             
             updateStatsDisplay();
-        }
-
-        function updateStatsDisplay() {
-            const total = state.stats.wins + state.stats.losses;
-            const winRate = total > 0 ? Math.round((state.stats.wins / total) * 100) : 0;
-            const streak = state.stats.currentStreak;
-            
-            elements.winCount.textContent = state.stats.wins;
-            elements.loseCount.textContent = state.stats.losses;
-            elements.winRate.textContent = `${winRate}%`;
-            elements.currentStreak.textContent = Math.abs(streak);
-            
-            if (streak > 0) {
-                elements.currentStreak.style.color = 'var(--success)';
-            } else if (streak < 0) {
-                elements.currentStreak.style.color = 'var(--danger)';
-            } else {
-                elements.currentStreak.style.color = 'var(--text-primary)';
-            }
-        }
-
-        function updatePredictionResultDisplay(isWin, actualResult) {
-            const prediction = state.pendingPrediction;
-            
-            if (!prediction) return;
-            
-            if (isWin) {
-                elements.predictionDetails.innerHTML = `
-                    <span style="color: var(--success); font-weight: 700;">
-                        <i class="fas fa-trophy"></i> WIN!
-                    </span>
-                    <div style="font-size: 0.85rem; margin-top: 4px;">
-                        AI predicted ${prediction.prediction} correctly (Actual: ${actualResult})
-                    </div>
-                `;
-            } else {
-                elements.predictionDetails.innerHTML = `
-                    <span style="color: var(--danger); font-weight: 700;">
-                        <i class="fas fa-times"></i> LOSE
-                    </span>
-                    <div style="font-size: 0.85rem; margin-top: 4px;">
-                        AI predicted ${prediction.prediction} (Actual: ${actualResult})
-                    </div>
-                `;
-            }
-        }
-
-        function updateLiveResultsTable() {
-            if (state.gameHistory.length === 0) {
-                elements.liveResultsBody.innerHTML = `
-                    <tr>
-                        <td colspan="4" class="empty-state">
-                            <i class="fas fa-exclamation-circle"></i>
-                            <div>No data available</div>
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            let html = '';
-            
-            state.gameHistory.forEach(game => {
-                const number = parseInt(game.number);
-                const isBig = number >= 5;
-                const result = isBig ? 'BIG' : 'SMALL';
-                const time = new Date(game.time || Date.now()).toLocaleTimeString([], {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-                
-                html += `
-                    <tr>
-                        <td class="text-truncate" title="${game.issueNumber}">
-                            ${game.issueNumber}
-                        </td>
-                        <td>
-                            <div class="number-cell">
-                                <div class="number-display ${isBig ? 'number-big' : 'number-small'}">
-                                    ${number}
-                                </div>
-                                <span style="font-weight: 700;">${number}</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="badge ${isBig ? 'badge-success' : 'badge-danger'}">
-                                ${result}
-                            </div>
-                        </td>
-                        <td>${time}</td>
-                    </tr>
-                `;
-            });
-            
-            elements.liveResultsBody.innerHTML = html;
-        }
-
-        function updatePredictionsTable() {
-            if (state.predictions.length === 0) {
-                elements.predictionsBody.innerHTML = `
-                    <tr>
-                        <td colspan="4" class="empty-state">
-                            <i class="fas fa-history"></i>
-                            <div>No predictions yet</div>
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            let html = '';
-            
-            state.predictions.forEach(pred => {
-                const periodDisplay = pred.period || '--';
-                const predictionClass = pred.prediction === 'BIG' ? 'badge-success' : 'badge-danger';
-                
-                if (pred.verified) {
-                    const actualClass = pred.actual === 'BIG' ? 'badge-success' : 'badge-danger';
-                    const resultClass = pred.result === 'WIN' ? 'badge-success' : 'badge-danger';
-                    
-                    html += `
-                        <tr>
-                            <td class="text-truncate" title="${periodDisplay}">
-                                ${periodDisplay}
-                            </td>
-                            <td>
-                                <div class="badge ${predictionClass}">
-                                    ${pred.prediction}
-                                </div>
-                            </td>
-                            <td>
-                                <div class="badge ${actualClass}">
-                                    ${pred.actual}
-                                </div>
-                            </td>
-                            <td>
-                                <div class="badge ${resultClass}">
-                                    ${pred.result}
-                                </div>
-                            </td>
-                        </tr>
-                    `;
-                } else {
-                    html += `
-                        <tr>
-                            <td class="text-truncate" title="${periodDisplay}">
-                                ${periodDisplay}
-                            </td>
-                            <td>
-                                <div class="badge ${predictionClass}">
-                                    ${pred.prediction}
-                                </div>
-                            </td>
-                            <td>
-                                <div class="badge badge-warning">
-                                    WAITING
-                                </div>
-                            </td>
-                            <td>
-                                <div class="badge badge-warning">
-                                    PENDING
-                                </div>
-                            </td>
-                        </tr>
-                    `;
-                }
-            });
-            
-            elements.predictionsBody.innerHTML = html;
+            updateTables();
         }
 
         function updateStatus(status, message) {
@@ -2530,26 +1578,49 @@
                     elements.statusIndicator.classList.add('error');
                     break;
             }
-            
-            state.isConnected = status === 'connected';
         }
 
         async function refreshData() {
-            updateStatus('loading', 'Refreshing data...');
-            
-            updatePeriod();
-            
+            updateStatus('loading', 'Refreshing...');
             await fetchAPIData();
             
             if (state.gameHistory.length > 0) {
                 makePrediction();
+                updateStatus('connected', 'System Active');
             }
+        }
+
+        function initApp() {
+            initializeTabs();
+            startTimer();
+            document.body.classList.add('mode-normal');
+            
+            fetchAPIData();
             
             setTimeout(() => {
                 if (state.gameHistory.length > 0) {
-                    updateStatus('connected', 'Data refreshed successfully');
+                    makePrediction();
                 }
-            }, 1000);
+            }, 1500);
+        }
+
+        // Share Functions
+        function shareCurrentPrediction() {
+            const text = `ð¯ BIGWIN Prediction: ${state.pendingPrediction?.prediction || '--'} (${state.pendingPrediction?.confidence || 0}%)`;
+            navigator.clipboard.writeText(text);
+            alert('â Copied to clipboard!');
+        }
+
+        function sharePredictionHistory() {
+            alert('ð Share history feature');
+        }
+
+        function shareSniperResults() {
+            alert('ð¯ Share sniper results feature');
+        }
+
+        function shareSniperHistory() {
+            alert('ð Share sniper history feature');
         }
     </script>
 </body>
